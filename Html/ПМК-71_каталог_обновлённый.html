@@ -1,0 +1,1238 @@
+<!doctype html>
+<html lang="ru"
+	><head
+		><meta charset="utf-8" /><meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/><meta name="theme-color" content="#0d5e16" /><title
+			>Каталог продукции — Жлобинская ПМК-71</title
+		><meta
+			name="description"
+			content="Каталог продукции Жлобинской ПМК-71: бетон, железобетонные изделия и материалы для благоустройства."
+		/><style>
+			:root {
+				--green: #0d5e16;
+				--ink: #1c2720;
+				--muted: #778078;
+				--line: #e5e9e5;
+				--bg: #f7f8f7;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			html {
+				scroll-behavior: smooth;
+			}
+			body {
+				margin: 0;
+				background: var(--bg);
+				font:
+					15px/1.5 Inter,
+					Arial,
+					sans-serif;
+				color: var(--ink);
+			}
+			a {
+				color: inherit;
+				text-decoration: none;
+			}
+			button,
+			input,
+			select,
+			textarea {
+				font: inherit;
+			}
+			button {
+				cursor: pointer;
+			}
+			.container {
+				width: min(1400px, calc(100% - 96px));
+				margin: auto;
+			}
+			.header {
+				background: rgba(255, 255, 255, 0.96);
+				border-bottom: 1px solid #e9ece9;
+				position: sticky;
+				top: 0;
+				z-index: 20;
+				backdrop-filter: blur(18px);
+			}
+			.header-inner {
+				height: 83px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 25px;
+			}
+			.brand {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				min-width: max-content;
+			}
+			.logo {
+				height: 44px;
+				width: 41px;
+				stroke: var(--green);
+				stroke-width: 2.6;
+				fill: none;
+			}
+			.brand-name {
+				font-size: 17px;
+				font-weight: 850;
+				letter-spacing: -0.55px;
+				line-height: 1.06;
+				color: #151a16;
+			}
+			.brand-caption {
+				padding-left: 12px;
+				border-left: 1px solid #dadfda;
+				color: #818b83;
+				font-size: 9px;
+				text-transform: uppercase;
+				line-height: 1.2;
+			}
+			.nav {
+				display: flex;
+				align-items: center;
+				gap: 27px;
+				font-size: 13px;
+				font-weight: 550;
+			}
+			.nav a {
+				white-space: nowrap;
+			}
+			.nav a:hover,
+			.nav a.active {
+				color: var(--green);
+			}
+			.header-actions {
+				display: flex;
+				align-items: center;
+				gap: 18px;
+			}
+			.phone {
+				display: flex;
+				flex-direction: column;
+				line-height: 1.3;
+				white-space: nowrap;
+			}
+			.phone strong {
+				font-size: 12px;
+			}
+			.phone small {
+				font-size: 11px;
+				color: #919a92;
+			}
+			.btn {
+				border: 1px solid transparent;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 12px;
+				border-radius: 4px;
+				padding: 13px 18px;
+				font-size: 13px;
+				font-weight: 600;
+			}
+			.btn-primary {
+				background: var(--green);
+				color: white;
+			}
+			.btn-primary:hover {
+				background: #084310;
+			}
+			.arrow {
+				font-size: 17px;
+			}
+			.icon-button {
+				border: 0;
+				background: transparent;
+				color: var(--green);
+			}
+			.mobile-toggle {
+				display: none;
+			}
+			.catalog {
+				padding: 52px 0 90px;
+			}
+			.breadcrumb {
+				font-size: 12px;
+				color: #98a09b;
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				margin-bottom: 13px;
+			}
+			.breadcrumb a:hover {
+				color: var(--green);
+			}
+			.topline {
+				display: flex;
+				justify-content: space-between;
+				align-items: end;
+				gap: 20px;
+				margin-bottom: 30px;
+			}
+			.topline h1 {
+				font-size: clamp(35px, 4vw, 54px);
+				line-height: 1.06;
+				font-weight: 650;
+				letter-spacing: -2px;
+				margin: 0;
+			}
+			.topline .num {
+				color: #819087;
+				font-size: 12px;
+			}
+			.catalog-layout {
+				display: grid;
+				grid-template-columns: 240px minmax(0, 1fr);
+				gap: 25px;
+				align-items: start;
+			}
+			.sidebar {
+				background: white;
+				border: 1px solid var(--line);
+				border-radius: 8px;
+				padding: 20px;
+				position: sticky;
+				top: 105px;
+			}
+			.sidebar h2 {
+				font-size: 15px;
+				font-weight: 700;
+				margin: 0 0 16px;
+			}
+			.category-filter {
+				display: flex;
+				flex-direction: column;
+				gap: 4px;
+			}
+			.cat-btn {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				width: 100%;
+				border: 0;
+				background: transparent;
+				text-align: left;
+				padding: 12px 11px;
+				color: #3a433c;
+				border-radius: 5px;
+				font-size: 13px;
+			}
+			.cat-btn:hover {
+				background: #eff5ef;
+			}
+			.cat-btn.active {
+				background: var(--green);
+				color: white;
+			}
+			.cat-btn span {
+				font-variant-numeric: tabular-nums;
+				opacity: 0.65;
+			}
+			.sidebar-note {
+				border-top: 1px solid var(--line);
+				margin-top: 22px;
+				padding-top: 19px;
+				color: #7f8880;
+				font-size: 12px;
+			}
+			.sidebar-note strong {
+				display: block;
+				color: #283c2c;
+				font-size: 13px;
+				margin-bottom: 6px;
+			}
+			.catalog-main {
+				min-width: 0;
+			}
+			.controls {
+				display: flex;
+				gap: 12px;
+				margin-bottom: 18px;
+			}
+			.searchbox {
+				flex: 1;
+				position: relative;
+			}
+			.searchbox input {
+				width: 100%;
+				background: white;
+				border: 1px solid var(--line);
+				border-radius: 6px;
+				padding: 14px 15px 14px 41px;
+				outline: 0;
+			}
+			.searchbox svg {
+				position: absolute;
+				left: 13px;
+				top: 15px;
+				opacity: 0.55;
+			}
+			.searchbox input:focus {
+				border-color: var(--green);
+			}
+			.sort {
+				background: white;
+				border: 1px solid var(--line);
+				border-radius: 6px;
+				padding: 0 13px;
+				min-width: 180px;
+			}
+			.grid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 15px;
+			}
+			.product-card {
+				display: flex;
+				flex-direction: column;
+				background: white;
+				border: 1px solid #e9ede9;
+				border-radius: 8px;
+				overflow: hidden;
+				transition:
+					transform 0.2s,
+					border-color 0.2s,
+					box-shadow 0.2s;
+			}
+			.product-card:hover {
+				transform: translateY(-3px);
+				border-color: #cdd9cf;
+				box-shadow: 0 14px 36px #18371e0b;
+			}
+			.photo {
+				height: 215px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: white;
+				padding: 12px;
+			}
+			.photo img {
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+			}
+			.product-body {
+				display: flex;
+				flex-direction: column;
+				flex: 1;
+				padding: 10px 19px 20px;
+			}
+			.product-category {
+				font-size: 11px;
+				color: #949e95;
+				margin-bottom: 4px;
+			}
+			.product-body h3 {
+				font-size: 17px;
+				line-height: 1.25;
+				letter-spacing: -0.35px;
+				margin: 0 0 9px;
+				font-weight: 660;
+				min-height: 42px;
+			}
+			.product-body p {
+				color: #89928b;
+				font-size: 12px;
+				margin: 0 0 20px;
+				min-height: 18px;
+			}
+			.price-row {
+				margin-top: auto;
+				border-top: 1px solid #eef1ee;
+				padding-top: 14px;
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: space-between;
+				gap: 10px;
+			}
+			.price-row > span {
+				font-weight: 650;
+				font-size: 12px;
+			}
+			.price-row small {
+				display: block;
+				font-weight: 400;
+				color: #9aa39a;
+				font-size: 10px;
+			}
+			.product-action {
+				border: 1px solid #cbdccd;
+				background: #fff;
+				color: var(--green);
+				padding: 8px 10px;
+				border-radius: 4px;
+				font-size: 11px;
+				font-weight: 600;
+			}
+			.product-action:hover {
+				border-color: var(--green);
+				background: #f2f8f3;
+			}
+			.empty {
+				display: none;
+				padding: 35px;
+				color: #737d76;
+				text-align: center;
+				background: white;
+				border: 1px solid var(--line);
+				border-radius: 7px;
+			}
+			.footer {
+				border-top: 1px solid var(--line);
+				background: white;
+				padding: 25px 0;
+				color: #7d877e;
+				font-size: 12px;
+			}
+			.foot {
+				display: flex;
+				justify-content: space-between;
+				gap: 15px;
+			}
+			.modal {
+				display: none;
+				position: fixed;
+				inset: 0;
+				z-index: 50;
+				background: #101b13a8;
+				align-items: center;
+				justify-content: center;
+				padding: 16px;
+			}
+			.modal.open {
+				display: flex;
+			}
+			.modal-panel {
+				background: white;
+				padding: 30px;
+				border-radius: 10px;
+				width: min(470px, 100%);
+				position: relative;
+			}
+			.modal-panel h2 {
+				font-size: 24px;
+				margin: 0 0 8px;
+			}
+			.modal-panel p {
+				color: #778078;
+				font-size: 13px;
+			}
+			.modal-panel label {
+				font-size: 12px;
+				display: block;
+				margin-top: 13px;
+				font-weight: 600;
+			}
+			.modal-panel input,
+			.modal-panel textarea {
+				width: 100%;
+				border: 1px solid var(--line);
+				padding: 12px;
+				border-radius: 4px;
+				margin-top: 6px;
+			}
+			.modal-panel textarea {
+				resize: vertical;
+				min-height: 100px;
+			}
+			.close {
+				border: 0;
+				background: none;
+				position: absolute;
+				right: 18px;
+				top: 13px;
+				font-size: 27px;
+			}
+			.dialog-actions {
+				display: flex;
+				justify-content: space-between;
+				gap: 12px;
+				align-items: center;
+				margin-top: 20px;
+			}
+			.dialog-actions a {
+				color: var(--green);
+				font-size: 12px;
+			}
+			.form-note {
+				margin-top: 12px;
+				font-size: 11px !important;
+			}
+			.mobile-links {
+				display: none;
+			}
+			@media (max-width: 1180px) {
+				.brand-caption {
+					display: none;
+				}
+				.nav {
+					gap: 15px;
+				}
+				.grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+				.phone {
+					display: none;
+				}
+			}
+			@media (max-width: 850px) {
+				.container {
+					width: min(100% - 32px, 700px);
+				}
+				.header-inner {
+					height: 72px;
+				}
+				.nav {
+					display: none;
+				}
+				.mobile-toggle {
+					display: block;
+				}
+				.mobile-links.open {
+					display: flex;
+					flex-direction: column;
+					gap: 12px;
+					padding: 18px 24px;
+					border-top: 1px solid var(--line);
+					background: white;
+				}
+				.catalog-layout {
+					grid-template-columns: 1fr;
+				}
+				.sidebar {
+					position: static;
+				}
+				.category-filter {
+					display: grid;
+					grid-template-columns: repeat(2, 1fr);
+				}
+				.sidebar-note {
+					display: none;
+				}
+				.catalog {
+					padding-top: 30px;
+				}
+			}
+			@media (max-width: 540px) {
+				.header-actions > .btn {
+					display: none;
+				}
+				.brand-name {
+					font-size: 15px;
+				}
+				.grid {
+					grid-template-columns: 1fr;
+				}
+				.controls {
+					flex-direction: column;
+				}
+				.sort {
+					padding: 12px;
+				}
+				.cat-btn {
+					padding: 10px 8px;
+				}
+				.topline h1 {
+					font-size: 38px;
+				}
+				.photo {
+					height: 245px;
+				}
+				.foot {
+					flex-direction: column;
+				}
+			}
+		</style></head
+	><body>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
+			.header {
+				height: 76px;
+				background: rgba(255, 255, 255, 0.97);
+				border-bottom: 1px solid #e6ebe5;
+				position: relative;
+				z-index: 40;
+			}
+			.header-inner {
+				height: 100%;
+				display: flex;
+				align-items: center;
+				gap: 30px;
+				justify-content: space-between;
+			}
+			.brand {
+				display: flex;
+				align-items: center;
+				gap: 11px;
+				flex-shrink: 0;
+			}
+			.logo {
+				width: 35px;
+				height: 42px;
+				fill: none;
+				stroke: var(--green);
+				stroke-width: 3.4;
+				stroke-linejoin: round;
+			}
+			.brand-name {
+				font-size: 18px;
+				font-weight: 800;
+				letter-spacing: -0.05em;
+				line-height: 1.03;
+			}
+			.brand-caption {
+				font-size: 8px;
+				text-transform: uppercase;
+				color: #828d85;
+				letter-spacing: 0.1em;
+				margin-left: 17px;
+				line-height: 1.7;
+				border-left: 1px solid #e1e6e2;
+				padding-left: 15px;
+			}
+			.nav {
+				display: flex;
+				align-items: center;
+				gap: 26px;
+				height: 100%;
+			}
+			.nav a {
+				font-size: 11px;
+				font-weight: 700;
+				white-space: nowrap;
+				height: 100%;
+				display: grid;
+				place-items: center;
+				border-bottom: 2px solid transparent;
+				transition: 0.2s;
+			}
+			.nav a:hover,
+			.nav a.active {
+				border-color: var(--green);
+				color: var(--green);
+			}
+			.header-actions {
+				display: flex;
+				align-items: center;
+				gap: 22px;
+			}
+			.phone {
+				border-left: 1px solid var(--line);
+				padding-left: 20px;
+				white-space: nowrap;
+			}
+			.phone strong {
+				display: block;
+				font-size: 12px;
+			}
+			.phone small {
+				font-size: 10px;
+				color: #8b948c;
+			}
+			.header .btn {
+				padding: 12px 18px;
+				white-space: nowrap;
+			}
+			.icon-button {
+				border: 0;
+				background: none;
+				padding: 8px;
+				display: grid;
+				place-items: center;
+			}
+			.mobile-toggle {
+				display: none;
+			}
+			.header {
+				font-family: Manrope, Arial, sans-serif;
+				line-height: normal;
+				top: auto;
+				backdrop-filter: none;
+			}
+			.header .container {
+				width: auto;
+				max-width: 1370px;
+				margin: auto;
+				padding: 0 42px;
+			}
+			.header .brand {
+				min-width: 0;
+			}
+			.header .brand-name {
+				color: #152019;
+			}
+			.header .phone {
+				display: block;
+				line-height: normal;
+			}
+			.header .btn {
+				gap: 19px;
+				font-size: 12px;
+				font-weight: 800;
+				border-radius: 3px;
+				transition: 0.2s;
+			}
+			.header .arrow {
+				font-size: 19px;
+				font-weight: 400;
+				line-height: 0;
+			}
+			.header .icon-button {
+				color: inherit;
+			}
+			@media (max-width: 1240px) {
+				.header .container {
+					padding-left: 27px;
+					padding-right: 27px;
+				}
+				.header .nav {
+					gap: 15px;
+				}
+				.header .brand-caption {
+					display: none;
+				}
+				.header .header-actions {
+					gap: 10px;
+				}
+				.header .phone {
+					display: none;
+				}
+			}
+			@media (max-width: 900px) {
+				.header {
+					height: 70px;
+				}
+				.header .mobile-toggle {
+					display: grid;
+				}
+				.header .btn {
+					display: none;
+				}
+				.header .nav {
+					position: absolute;
+					top: 70px;
+					left: 0;
+					right: 0;
+					background: #fff;
+					display: none;
+					flex-direction: column;
+					height: auto;
+					align-items: stretch;
+					gap: 0;
+					padding: 10px 28px 25px;
+					box-shadow: 0 20px 35px #0002;
+				}
+				.header .nav.open {
+					display: flex;
+				}
+				.header .nav a {
+					height: auto;
+					padding: 16px 0;
+					display: block;
+					border-bottom: 1px solid #e8ece8;
+				}
+			}
+			@media (max-width: 620px) {
+				.header .container {
+					padding-left: 20px;
+					padding-right: 20px;
+				}
+				.header .brand-name {
+					font-size: 16px;
+				}
+			}
+		</style>
+		<header class="header"
+			><div class="container header-inner"
+				><a
+					aria-label="Жлобинская ПМК-71 — главная"
+					class="brand"
+					href="ПМК-71_главная_исправленная.html#home"
+					><svg aria-hidden="true" class="logo" viewbox="0 0 45 48">
+						<path
+							d="M4 43V17l9-7v33M13 43V5l11 5v33M24 43V21l9-6v28M33 43V28l8-4v19M4 43h37"
+						></path>
+						<path d="M17 14v4m0 5v4m0 5v4m11-10v4m0 5v4"></path></svg
+					><div class="brand-name">ЖЛОБИНСКАЯ<br />ПМК-71</div
+					><div class="brand-caption"
+						>строительство<br />монтаж<br />развитие</div
+					></a
+				><nav class="nav" id="nav"
+					><a href="ПМК-71_главная_исправленная.html#home">Главная</a
+					><a href="ПМК-71_главная_исправленная.html#about">О компании</a
+					><a class="active" href="ПМК-71_каталог_обновлённый.html">Продукция</a
+					><a href="ПМК-71_страница_новостей.html">Новости</a
+					><a href="ПМК-71_главная_исправленная.html#contacts">Контакты</a></nav
+				><div class="header-actions"
+					><a class="phone" href="ПМК-71_главная_исправленная.html#contacts"
+						><strong>Связаться с нами</strong
+						><small>Контакты предприятия</small></a
+					><button class="btn btn-primary" data-open-modal=""
+						>Оставить заявку <span class="arrow">→</span></button
+					><button
+						aria-expanded="false"
+						aria-label="Открыть меню"
+						class="icon-button mobile-toggle"
+						id="mobileToggle"
+						><svg
+							fill="none"
+							height="25"
+							stroke="currentColor"
+							stroke-width="1.7"
+							viewbox="0 0 24 24"
+							width="25"
+						>
+							<path
+								d="M3 6h18M3 12h18M3 18h18"
+							></path></svg></button></div></div
+		></header>
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				const menu = document.getElementById("mobileToggle"),
+					nav = document.getElementById("nav");
+				menu.addEventListener("click", () => {
+					menu.setAttribute(
+						"aria-expanded",
+						String(nav.classList.toggle("open")),
+					);
+				});
+				nav.querySelectorAll("a").forEach((link) =>
+					link.addEventListener("click", () => {
+						nav.classList.remove("open");
+						menu.setAttribute("aria-expanded", "false");
+					}),
+				);
+			});
+		</script>
+		<div hidden id="mobileLinks"></div>
+		<main class="catalog"
+			><div class="container"
+				><div class="breadcrumb"
+					><a href="ПМК-71_главная_исправленная.html">Главная</a><span> / </span
+					><span>Продукция</span></div
+				><div class="topline"
+					><h1>Каталог</h1
+					><span class="num" id="count">9 товаров и категорий</span></div
+				>
+				<div class="catalog-layout"
+					><aside class="sidebar"
+						><h2>Категории</h2
+						><div class="category-filter" id="categories"
+							><button class="cat-btn active" data-category="Все"
+								>Все товары <span>9</span></button
+							><button class="cat-btn" data-category="Бетон"
+								>Товарный бетон <span>2</span></button
+							><button class="cat-btn" data-category="Железобетон"
+								>Железобетонные изделия <span>3</span></button
+							><button class="cat-btn" data-category="Благоустройство"
+								>Благоустройство <span>2</span></button
+							><button class="cat-btn" data-category="Прочие материалы"
+								>Другие материалы <span>2</span></button
+							></div
+						><div class="sidebar-note"
+							><strong>Информация о продукции</strong>Конкретные марки бетона и
+							изделия указаны по опубликованным объявлениям. Другие позиции
+							представлены как категории ассортимента. Наличие и цены уточняются
+							у предприятия.</div
+						></aside
+					>
+					<div class="catalog-main"
+						><div class="controls"
+							><div class="searchbox"
+								><svg
+									width="19"
+									height="19"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.7"
+								>
+									<circle cx="11" cy="11" r="7" />
+									<path d="m16 16 5 5" /></svg
+								><input
+									id="search"
+									type="search"
+									placeholder="Поиск по наименованию..."
+									aria-label="Поиск продукции" /></div
+							><select id="sort" class="sort" aria-label="Сортировка"
+								><option value="default">По умолчанию</option
+								><option value="az">По названию: А–Я</option
+								><option value="za">По названию: Я–А</option></select
+							></div
+						><div class="grid" id="grid"
+							><article
+								class="product-card"
+								data-category="Бетон"
+								data-name="бетон м150"
+							>
+								<div class="photo"
+									><img
+										src="../assets/products/beton-m150.png"
+										alt="Предметное иллюстративное изображение: Бетон М150"
+										loading="lazy"
+								/></div>
+								<div class="product-body"
+									><div class="product-category">Бетон</div><h3>Бетон М150</h3
+									><p>Товарная бетонная смесь</p
+									><div class="price-row"
+										><span>Цена по запросу <small>Ед. изм.: м³</small></span
+										><button
+											type="button"
+											class="product-action"
+											data-product="Бетон М150"
+											>Запросить цену <span aria-hidden="true">↗</span></button
+										></div
+									></div
+								></article
+							>
+							<article
+								class="product-card"
+								data-category="Бетон"
+								data-name="бетон м200"
+							>
+								<div class="photo"
+									><img
+										src="../assets/products/beton-m200.png"
+										alt="Предметное иллюстративное изображение: Бетон М200"
+										loading="lazy"
+								/></div>
+								<div class="product-body"
+									><div class="product-category">Бетон</div><h3>Бетон М200</h3
+									><p>Товарная бетонная смесь</p
+									><div class="price-row"
+										><span>Цена по запросу <small>Ед. изм.: м³</small></span
+										><button
+											type="button"
+											class="product-action"
+											data-product="Бетон М200"
+											>Запросить цену <span aria-hidden="true">↗</span></button
+										></div
+									></div
+								></article
+							>
+							<article
+								class="product-card"
+								data-category="Железобетон"
+								data-name="кольцо колодезное кс-10-9"
+							>
+								<div class="photo"
+									><img
+										src="../assets/products/ks-10-9.png"
+										alt="Предметное иллюстративное изображение: Кольцо колодезное КС-10-9"
+										loading="lazy"
+								/></div>
+								<div class="product-body"
+									><div class="product-category">Железобетон</div
+									><h3>Кольцо колодезное КС-10-9</h3
+									><p>Железобетонное кольцо для колодцев</p
+									><div class="price-row"
+										><span>Цена по запросу <small>Ед. изм.: шт.</small></span
+										><button
+											type="button"
+											class="product-action"
+											data-product="Кольцо колодезное КС-10-9"
+											>Запросить цену <span aria-hidden="true">↗</span></button
+										></div
+									></div
+								></article
+							>
+							<article
+								class="product-card"
+								data-category="Железобетон"
+								data-name="кольцо колодезное кс-15-9"
+							>
+								<div class="photo"
+									><img
+										src="../assets/products/ks-15-9.png"
+										alt="Предметное иллюстративное изображение: Кольцо колодезное КС-15-9"
+										loading="lazy"
+								/></div>
+								<div class="product-body"
+									><div class="product-category">Железобетон</div
+									><h3>Кольцо колодезное КС-15-9</h3
+									><p>Железобетонное кольцо для колодцев</p
+									><div class="price-row"
+										><span>Цена по запросу <small>Ед. изм.: шт.</small></span
+										><button
+											type="button"
+											class="product-action"
+											data-product="Кольцо колодезное КС-15-9"
+											>Запросить цену <span aria-hidden="true">↗</span></button
+										></div
+									></div
+								></article
+							>
+							<article
+								class="product-card"
+								data-category="Железобетон"
+								data-name="плита покрытия пп-15"
+							>
+								<div class="photo"
+									><img
+										src="../assets/products/pp-15.png"
+										alt="Предметное иллюстративное изображение: Плита покрытия ПП-15"
+										loading="lazy"
+								/></div>
+								<div class="product-body"
+									><div class="product-category">Железобетон</div
+									><h3>Плита покрытия ПП-15</h3
+									><p>Железобетонная плита покрытия колодца</p
+									><div class="price-row"
+										><span>Цена по запросу <small>Ед. изм.: шт.</small></span
+										><button
+											type="button"
+											class="product-action"
+											data-product="Плита покрытия ПП-15"
+											>Запросить цену <span aria-hidden="true">↗</span></button
+										></div
+									></div
+								></article
+							>
+							<article
+								class="product-card"
+								data-category="Благоустройство"
+								data-name="тротуарная плитка"
+							>
+								<div class="photo"
+									><img
+										src="../assets/products/plitka.png"
+										alt="Предметное иллюстративное изображение: Тротуарная плитка"
+										loading="lazy"
+								/></div>
+								<div class="product-body"
+									><div class="product-category">Благоустройство</div
+									><h3>Тротуарная плитка</h3
+									><p>Ассортимент и размеры — по запросу</p
+									><div class="price-row"
+										><span>Цена по запросу <small>Ед. изм.: м²</small></span
+										><button
+											type="button"
+											class="product-action"
+											data-product="Тротуарная плитка"
+											>Запросить цену <span aria-hidden="true">↗</span></button
+										></div
+									></div
+								></article
+							>
+							<article
+								class="product-card"
+								data-category="Благоустройство"
+								data-name="бордюры"
+							>
+								<div class="photo"
+									><img
+										src="../assets/products/bordur.png"
+										alt="Предметное иллюстративное изображение: Бордюры"
+										loading="lazy"
+								/></div>
+								<div class="product-body"
+									><div class="product-category">Благоустройство</div
+									><h3>Бордюры</h3><p>Типы и размеры — по запросу</p
+									><div class="price-row"
+										><span>Цена по запросу <small>Ед. изм.: шт.</small></span
+										><button
+											type="button"
+											class="product-action"
+											data-product="Бордюры"
+											>Запросить цену <span aria-hidden="true">↗</span></button
+										></div
+									></div
+								></article
+							>
+							<article
+								class="product-card"
+								data-category="Прочие материалы"
+								data-name="дренажные трубы"
+							>
+								<div class="photo"
+									><img
+										src="../assets/products/drenazh.png"
+										alt="Предметное иллюстративное изображение: Дренажные трубы"
+										loading="lazy"
+								/></div>
+								<div class="product-body"
+									><div class="product-category">Прочие материалы</div
+									><h3>Дренажные трубы</h3><p>Номенклатура — по запросу</p
+									><div class="price-row"
+										><span>Цена по запросу <small>Ед. изм.: шт.</small></span
+										><button
+											type="button"
+											class="product-action"
+											data-product="Дренажные трубы"
+											>Запросить цену <span aria-hidden="true">↗</span></button
+										></div
+									></div
+								></article
+							>
+							<article
+								class="product-card"
+								data-category="Прочие материалы"
+								data-name="асфальт"
+							>
+								<div class="photo"
+									><img
+										src="../assets/products/asfalt.png"
+										alt="Предметное иллюстративное изображение: Асфальт"
+										loading="lazy"
+								/></div>
+								<div class="product-body"
+									><div class="product-category">Прочие материалы</div
+									><h3>Асфальт</h3><p>Марка и объём поставки — по запросу</p
+									><div class="price-row"
+										><span>Цена по запросу <small>Ед. изм.: т</small></span
+										><button
+											type="button"
+											class="product-action"
+											data-product="Асфальт"
+											>Запросить цену <span aria-hidden="true">↗</span></button
+										></div
+									></div
+								></article
+							></div
+						><div class="empty" id="empty"
+							>По вашему запросу товары не найдены.</div
+						></div
+					></div
+				></div
+			></main
+		>
+		<footer class="footer"
+			><div class="container foot"
+				><span>© Жлобинская ПМК-71 · Демонстрационный каталог</span
+				><span
+					>Изображения — иллюстративные визуализации изделий, не фотографии
+					продукции предприятия.</span
+				></div
+			></footer
+		>
+		<div
+			class="modal"
+			id="requestModal"
+			role="dialog"
+			aria-modal="true"
+			aria-labelledby="requestTitle"
+			aria-hidden="true"
+			><div class="modal-panel"
+				><button class="close" id="closeModal" aria-label="Закрыть">×</button
+				><h2 id="requestTitle">Запросить стоимость</h2
+				><p
+					>Для уточнения цены и наличия свяжитесь с отделом сбыта. Форма ниже
+					демонстрационная и не отправляет данные на сервер.</p
+				><label>Продукция<input id="requestedProduct" readonly /></label
+				><label>Ваше имя<input id="customer" placeholder="Имя" /></label
+				><label
+					>Комментарий<textarea
+						id="comment"
+						placeholder="Объём, количество или дополнительные вопросы"
+					></textarea></label
+				><div class="dialog-actions"
+					><a href="tel:+375293566001">Позвонить: +375 29 356-60-01</a
+					><button class="btn btn-primary" id="copyRequest"
+						>Скопировать заявку</button
+					></div
+				><p class="form-note"
+					>После копирования отправьте заявку предприятию удобным способом.</p
+				></div
+			></div
+		>
+		<script>
+			(() => {
+				const cards = [...document.querySelectorAll(".product-card")],
+					catBtns = [...document.querySelectorAll(".cat-btn")],
+					search = document.getElementById("search"),
+					sort = document.getElementById("sort"),
+					grid = document.getElementById("grid");
+				let category = "Все";
+				const defaultOrder = [...cards];
+				function update() {
+					const q = search.value.trim().toLocaleLowerCase("ru");
+					let filtered = defaultOrder.filter(
+						(c) =>
+							(category === "Все" || c.dataset.category === category) &&
+							c.dataset.name.includes(q),
+					);
+					if (sort.value === "az")
+						filtered.sort((a, b) =>
+							a.dataset.name.localeCompare(b.dataset.name, "ru"),
+						);
+					if (sort.value === "za")
+						filtered.sort((a, b) =>
+							b.dataset.name.localeCompare(a.dataset.name, "ru"),
+						);
+					grid.replaceChildren(...filtered);
+					document.getElementById("count").textContent =
+						filtered.length + " позиций";
+					document.getElementById("empty").style.display = filtered.length
+						? "none"
+						: "block";
+				}
+				catBtns.forEach((b) =>
+					b.addEventListener("click", () => {
+						category = b.dataset.category;
+						catBtns.forEach((x) => x.classList.toggle("active", x === b));
+						update();
+					}),
+				);
+				search.addEventListener("input", update);
+				sort.addEventListener("change", update);
+				const menu = document.getElementById("mobileToggle"),
+					mobile = document.getElementById("mobileLinks");
+				if (menu)
+					menu.addEventListener("click", () => {
+						let open = mobile.classList.toggle("open");
+						menu.setAttribute("aria-expanded", String(open));
+					});
+				const modal = document.getElementById("requestModal");
+				function openModal(name) {
+					document.getElementById("requestedProduct").value =
+						name || "Общий запрос";
+					modal.classList.add("open");
+					modal.setAttribute("aria-hidden", "false");
+				}
+				function closeModal() {
+					modal.classList.remove("open");
+					modal.setAttribute("aria-hidden", "true");
+				}
+				document
+					.querySelectorAll("[data-product]")
+					.forEach((b) =>
+						b.addEventListener("click", () => openModal(b.dataset.product)),
+					);
+				document
+					.querySelectorAll("[data-open-modal]")
+					.forEach((b) =>
+						b.addEventListener("click", () => openModal("Общий запрос")),
+					);
+				document
+					.getElementById("closeModal")
+					.addEventListener("click", closeModal);
+				modal.addEventListener("click", (e) => {
+					if (e.target === modal) closeModal();
+				});
+				document.addEventListener("keydown", (e) => {
+					if (e.key === "Escape") closeModal();
+				});
+				document.getElementById("copyRequest").addEventListener("click", () => {
+					const t =
+						"Заявка в ПМК-71\nПродукция: " +
+						document.getElementById("requestedProduct").value +
+						"\nИмя: " +
+						document.getElementById("customer").value +
+						"\nКомментарий: " +
+						document.getElementById("comment").value;
+					navigator.clipboard
+						?.writeText(t)
+						.then(() => alert("Заявка скопирована. Отправьте её предприятию."))
+						.catch(() => prompt("Скопируйте текст заявки:", t));
+				});
+			})();
+		</script></body
+	></html
+>

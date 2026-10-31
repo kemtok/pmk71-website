@@ -1,0 +1,1872 @@
+<!doctype html>
+<html lang="ru"
+	><head
+		><meta charset="UTF-8" /><meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/><title>Новости — Жлобинская ПМК-71</title
+		><meta
+			name="description"
+			content="Публикации и сообщения из открытых источников о деятельности Жлобинской ПМК-71"
+		/><style>
+			:root {
+				--green: #0d5e16;
+				--deep: #083e10;
+				--ink: #152019;
+				--muted: #67716b;
+				--line: #e1e7e1;
+				--bg: #f6f8f6;
+				--max: 1370px;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			html {
+				scroll-behavior: smooth;
+			}
+			body {
+				margin: 0;
+				color: var(--ink);
+				font-family: Manrope, Arial, sans-serif;
+				background: #fff;
+				-webkit-font-smoothing: antialiased;
+			}
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
+			button,
+			input,
+			textarea {
+				font: inherit;
+			}
+			button {
+				cursor: pointer;
+			}
+			img {
+				display: block;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+			.container {
+				max-width: var(--max);
+				margin: auto;
+				padding: 0 42px;
+			}
+			.section {
+				padding: 88px 0;
+			}
+			.eyebrow {
+				font-size: 11px;
+				letter-spacing: 0.23em;
+				text-transform: uppercase;
+				color: #78817a;
+				font-weight: 800;
+			}
+			.section-title {
+				font-weight: 700;
+				letter-spacing: -0.045em;
+				font-size: clamp(30px, 3vw, 47px);
+				line-height: 1.18;
+				margin: 12px 0 18px;
+			}
+			.subtle {
+				color: var(--muted);
+				line-height: 1.8;
+				font-size: 14px;
+			}
+			.btn {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 19px;
+				padding: 15px 23px;
+				border: 1px solid transparent;
+				font-size: 12px;
+				font-weight: 800;
+				border-radius: 3px;
+				transition: 0.2s;
+			}
+			.btn-primary {
+				background: var(--green);
+				color: white;
+			}
+			.btn-primary:hover {
+				background: var(--deep);
+				transform: translateY(-1px);
+			}
+			.btn-ghost {
+				border-color: #82978a;
+				color: #1b2b20;
+				background: rgba(255, 255, 255, 0.3);
+				backdrop-filter: blur(8px);
+			}
+			.btn-ghost:hover {
+				background: #fff;
+			}
+			.arrow {
+				font-size: 19px;
+				font-weight: 400;
+				line-height: 0;
+			}
+			.header {
+				height: 76px;
+				background: rgba(255, 255, 255, 0.97);
+				border-bottom: 1px solid #e6ebe5;
+				position: relative;
+				z-index: 40;
+			}
+			.header-inner {
+				height: 100%;
+				display: flex;
+				align-items: center;
+				gap: 30px;
+				justify-content: space-between;
+			}
+			.brand {
+				display: flex;
+				align-items: center;
+				gap: 11px;
+				flex-shrink: 0;
+			}
+			.logo {
+				width: 35px;
+				height: 42px;
+				fill: none;
+				stroke: var(--green);
+				stroke-width: 3.4;
+				stroke-linejoin: round;
+			}
+			.brand-name {
+				font-size: 18px;
+				font-weight: 800;
+				letter-spacing: -0.05em;
+				line-height: 1.03;
+			}
+			.brand-caption {
+				font-size: 8px;
+				text-transform: uppercase;
+				color: #828d85;
+				letter-spacing: 0.1em;
+				margin-left: 17px;
+				line-height: 1.7;
+				border-left: 1px solid #e1e6e2;
+				padding-left: 15px;
+			}
+			.nav {
+				display: flex;
+				align-items: center;
+				gap: 26px;
+				height: 100%;
+			}
+			.nav a {
+				font-size: 11px;
+				font-weight: 700;
+				white-space: nowrap;
+				height: 100%;
+				display: grid;
+				place-items: center;
+				border-bottom: 2px solid transparent;
+				transition: 0.2s;
+			}
+			.nav a:hover,
+			.nav a.active {
+				border-color: var(--green);
+				color: var(--green);
+			}
+			.header-actions {
+				display: flex;
+				align-items: center;
+				gap: 22px;
+			}
+			.phone {
+				border-left: 1px solid var(--line);
+				padding-left: 20px;
+				white-space: nowrap;
+			}
+			.phone strong {
+				display: block;
+				font-size: 12px;
+			}
+			.phone small {
+				font-size: 10px;
+				color: #8b948c;
+			}
+			.header .btn {
+				padding: 12px 18px;
+				white-space: nowrap;
+			}
+			.icon-button {
+				border: 0;
+				background: none;
+				padding: 8px;
+				display: grid;
+				place-items: center;
+			}
+			.mobile-toggle {
+				display: none;
+			}
+			.hero {
+				position: relative;
+				min-height: 530px;
+				isolation: isolate;
+				display: flex;
+				align-items: center;
+				overflow: hidden;
+				background: #d2d9d4;
+			}
+			.hero-image {
+				position: absolute;
+				inset: 0;
+				z-index: -2;
+				background-size: cover;
+				background-position: center 46%;
+				transition:
+					opacity 0.65s,
+					transform 6s ease;
+				transform: scale(1.02);
+			}
+			.hero::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				z-index: -1;
+				background: linear-gradient(
+					90deg,
+					rgba(230, 236, 232, 0.87) 0%,
+					rgba(237, 239, 234, 0.75) 26%,
+					rgba(231, 233, 225, 0.3) 55%,
+					rgba(8, 24, 13, 0.12) 100%
+				);
+			}
+			.hero .container {
+				width: 100%;
+				position: relative;
+				padding-top: 30px;
+				padding-bottom: 45px;
+			}
+			.hero-copy {
+				max-width: 690px;
+			}
+			.hero .eyebrow {
+				color: #526056;
+			}
+			.hero h1 {
+				font-weight: 800;
+				font-size: clamp(46px, 5vw, 76px);
+				line-height: 1.03;
+				letter-spacing: -0.065em;
+				margin: 20px 0 22px;
+				color: #101b13;
+			}
+			.hero p {
+				font-size: clamp(16px, 1.5vw, 21px);
+				line-height: 1.55;
+				max-width: 470px;
+				margin: 0 0 34px;
+			}
+			.hero-buttons {
+				display: flex;
+				gap: 13px;
+				flex-wrap: wrap;
+			}
+			.hero-counter {
+				position: absolute;
+				right: 43px;
+				top: 50%;
+				transform: translateY(-50%);
+				display: grid;
+				gap: 20px;
+				font-size: 11px;
+				color: #26352a;
+			}
+			.hero-counter span {
+				display: block;
+				cursor: pointer;
+				opacity: 0.65;
+			}
+			.hero-counter span.selected {
+				color: var(--green);
+				font-weight: 800;
+				opacity: 1;
+			}
+			.hero-counter .bar {
+				width: 1px;
+				height: 42px;
+				background: #83918a;
+				margin: 0 auto;
+			}
+			.hero-footer {
+				position: absolute;
+				right: 43px;
+				bottom: 27px;
+				display: flex;
+				align-items: center;
+				gap: 16px;
+			}
+			.hero-caption {
+				color: white;
+				background: rgba(10, 33, 17, 0.55);
+				backdrop-filter: blur(10px);
+				padding: 12px 18px;
+				font-size: 10px;
+				max-width: 250px;
+				line-height: 1.6;
+			}
+			.slider-buttons {
+				display: flex;
+				gap: 6px;
+			}
+			.slider-buttons button {
+				border: 1px solid rgba(255, 255, 255, 0.7);
+				background: rgba(21, 35, 26, 0.35);
+				color: white;
+				width: 38px;
+				height: 38px;
+				backdrop-filter: blur(6px);
+				font-size: 19px;
+			}
+			.slider-buttons button:hover {
+				background: var(--green);
+			}
+			.service-strip {
+				background: white;
+				border-bottom: 1px solid var(--line);
+			}
+			.strip-grid {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr) 185px;
+				align-items: stretch;
+				padding-top: 28px;
+				padding-bottom: 28px;
+			}
+			.strip-item {
+				display: flex;
+				gap: 17px;
+				align-items: flex-start;
+				min-height: 90px;
+				padding: 6px 22px 6px 0;
+				border-right: 1px solid var(--line);
+				margin-right: 22px;
+			}
+			.strip-item svg {
+				width: 29px;
+				flex-shrink: 0;
+				stroke: var(--green);
+				stroke-width: 1.55;
+				fill: none;
+			}
+			.strip-item b {
+				font-size: 12px;
+				display: block;
+				margin: 0 0 8px;
+				line-height: 1.45;
+			}
+			.strip-item span {
+				font-size: 10px;
+				line-height: 1.7;
+				color: #818980;
+			}
+			.experience {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 12px;
+			}
+			.experience strong {
+				font-size: 50px;
+				font-weight: 500;
+				color: var(--green);
+				letter-spacing: -0.06em;
+				line-height: 1;
+			}
+			.experience span {
+				font-size: 12px;
+				line-height: 1.45;
+				color: #627368;
+			}
+			.about {
+				background: #fff;
+			}
+			.about-grid {
+				display: grid;
+				grid-template-columns: 1fr 1.2fr 0.37fr;
+				gap: 45px;
+				align-items: center;
+			}
+			.about-copy {
+				max-width: 460px;
+			}
+			.about-copy p {
+				margin-bottom: 24px;
+			}
+			.media-tile {
+				position: relative;
+				border-radius: 4px;
+				overflow: hidden;
+				height: 310px;
+				background: #cbd4cc;
+			}
+			.media-tile:after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(0deg, rgba(0, 0, 0, 0.16), transparent 70%);
+			}
+			.media-tile img {
+				transition: transform 0.5s;
+			}
+			.media-tile:hover img {
+				transform: scale(1.04);
+			}
+			.photo-label {
+				position: absolute;
+				bottom: 20px;
+				left: 22px;
+				z-index: 1;
+				color: #fff;
+				font-size: 11px;
+				letter-spacing: 0.04em;
+			}
+			.stats {
+				display: grid;
+				gap: 24px;
+			}
+			.stat {
+				border-bottom: 1px solid var(--line);
+				padding-bottom: 20px;
+				display: flex;
+				align-items: center;
+				gap: 19px;
+			}
+			.stat:last-child {
+				border: none;
+			}
+			.stat strong {
+				font-size: 34px;
+				font-weight: 600;
+				letter-spacing: -0.06em;
+			}
+			.stat span {
+				font-size: 10px;
+				color: #6a756d;
+				line-height: 1.5;
+			}
+			.projects {
+				background: var(--bg);
+				border-top: 1px solid #e7ece7;
+			}
+			.project-layout {
+				display: grid;
+				grid-template-columns: 220px 1fr;
+				gap: 38px;
+			}
+			.project-intro {
+				display: flex;
+				flex-direction: column;
+				align-items: start;
+			}
+			.project-intro .section-title {
+				font-size: 35px;
+			}
+			.project-intro .link {
+				margin-top: auto;
+			}
+			.projects-grid {
+				display: grid;
+				grid-template-columns: repeat(4, minmax(0, 1fr));
+				gap: 13px;
+			}
+			.project {
+				background: #fff;
+				border: 1px solid #e6eae6;
+				border-radius: 4px;
+				overflow: hidden;
+				transition:
+					transform 0.25s,
+					box-shadow 0.25s;
+			}
+			.project:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 12px 26px rgba(20, 40, 22, 0.09);
+			}
+			.project-photo {
+				height: 164px;
+				overflow: hidden;
+				background: #d5ded5;
+			}
+			.project-photo img {
+				transition: transform 0.4s;
+			}
+			.project:hover .project-photo img {
+				transform: scale(1.06);
+			}
+			.project-info {
+				padding: 13px 14px 16px;
+			}
+			.project-info b {
+				font-size: 12px;
+			}
+			.project-info p {
+				font-size: 10px;
+				color: #7a847b;
+				margin: 6px 0 0;
+			}
+			.link {
+				display: inline-flex;
+				align-items: center;
+				gap: 15px;
+				color: var(--green);
+				font-size: 11px;
+				font-weight: 800;
+			}
+			.products {
+				background: white;
+			}
+			.products-head {
+				display: flex;
+				align-items: end;
+				justify-content: space-between;
+				gap: 20px;
+			}
+			.product-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 20px;
+				margin-top: 26px;
+			}
+			.product-card {
+				border: 1px solid var(--line);
+				border-radius: 4px;
+				overflow: hidden;
+				background: #fff;
+			}
+			.product-card .photo {
+				height: 220px;
+				overflow: hidden;
+				background: #eff2ef;
+			}
+			.product-card img {
+				transition: transform 0.4s;
+			}
+			.product-card:hover img {
+				transform: scale(1.05);
+			}
+			.product-body {
+				padding: 20px;
+			}
+			.product-body b {
+				font-size: 16px;
+			}
+			.product-body p {
+				color: var(--muted);
+				font-size: 12px;
+				line-height: 1.7;
+			}
+			.product-body .link {
+				margin-top: 4px;
+			}
+			.cta {
+				background: #0c4315;
+				color: #fff;
+				position: relative;
+				overflow: hidden;
+			}
+			.cta:before {
+				content: "";
+				position: absolute;
+				right: -80px;
+				top: -220px;
+				width: 650px;
+				height: 650px;
+				border: 1px solid rgba(255, 255, 255, 0.11);
+				border-radius: 50%;
+				box-shadow:
+					0 0 0 80px rgba(255, 255, 255, 0.025),
+					0 0 0 160px rgba(255, 255, 255, 0.025);
+			}
+			.cta-inner {
+				padding-top: 65px;
+				padding-bottom: 65px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 35px;
+				position: relative;
+			}
+			.cta h2 {
+				font-size: clamp(28px, 3.5vw, 48px);
+				line-height: 1.15;
+				margin: 0 0 15px;
+				letter-spacing: -0.05em;
+			}
+			.cta p {
+				font-size: 13px;
+				color: #d0ddd2;
+				margin: 0;
+			}
+			.cta .btn {
+				background: #fff;
+				color: #0a4813;
+			}
+			.footer {
+				background: #f7f9f7;
+				padding: 55px 0 30px;
+			}
+			.footer-grid {
+				display: grid;
+				grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+				gap: 40px;
+			}
+			.footer h4 {
+				font-size: 12px;
+				margin: 0 0 16px;
+			}
+			.footer a:not(.brand) {
+				display: block;
+				font-size: 11px;
+				color: #647066;
+				margin-bottom: 12px;
+			}
+			.footer a:hover {
+				color: var(--green);
+			}
+			.footer p {
+				font-size: 11px;
+				color: #7b867e;
+				line-height: 1.8;
+			}
+			.footer-bottom {
+				display: flex;
+				justify-content: space-between;
+				gap: 12px;
+				border-top: 1px solid var(--line);
+				padding-top: 22px;
+				margin-top: 34px;
+				font-size: 10px;
+				color: #849087;
+			}
+			.modal {
+				position: fixed;
+				inset: 0;
+				z-index: 100;
+				background: rgba(9, 24, 13, 0.6);
+				display: none;
+				align-items: center;
+				justify-content: center;
+				padding: 16px;
+				backdrop-filter: blur(6px);
+			}
+			.modal.open {
+				display: flex;
+			}
+			.modal-panel {
+				background: #fff;
+				border-radius: 6px;
+				width: min(100%, 510px);
+				padding: 38px;
+				position: relative;
+				box-shadow: 0 22px 90px rgba(0, 0, 0, 0.2);
+			}
+			.modal-panel h2 {
+				margin: 0 0 10px;
+				letter-spacing: -0.04em;
+			}
+			.modal-close {
+				position: absolute;
+				right: 15px;
+				top: 13px;
+				border: 0;
+				background: transparent;
+				font-size: 25px;
+			}
+			.form-group {
+				margin-top: 15px;
+			}
+			.form-group label {
+				display: block;
+				font-size: 11px;
+				font-weight: 800;
+				margin-bottom: 8px;
+			}
+			.form-group input,
+			.form-group textarea {
+				width: 100%;
+				border: 1px solid #dfe7df;
+				background: #fafbfa;
+				padding: 13px 14px;
+				border-radius: 3px;
+				outline: none;
+				font-size: 13px;
+			}
+			.form-group input:focus,
+			.form-group textarea:focus {
+				border-color: var(--green);
+			}
+			.form-note {
+				font-size: 11px;
+				color: #78857a;
+				line-height: 1.6;
+			}
+			.toast {
+				position: fixed;
+				bottom: 24px;
+				left: 50%;
+				transform: translateX(-50%) translateY(120px);
+				background: #153b1d;
+				color: white;
+				z-index: 120;
+				padding: 13px 20px;
+				border-radius: 4px;
+				font-size: 12px;
+				transition: 0.3s;
+				box-shadow: 0 10px 30px #0002;
+			}
+			.toast.show {
+				transform: translateX(-50%) translateY(0);
+			}
+			.placeholder {
+				background: linear-gradient(120deg, #e4eae3, #cbd8cb);
+			}
+			@media (max-width: 1240px) {
+				.container {
+					padding-left: 27px;
+					padding-right: 27px;
+				}
+				.nav {
+					gap: 15px;
+				}
+				.brand-caption {
+					display: none;
+				}
+				.header-actions {
+					gap: 10px;
+				}
+				.phone {
+					display: none;
+				}
+				.about-grid {
+					grid-template-columns: 1fr 1.1fr;
+				}
+				.stats {
+					grid-column: 1/-1;
+					grid-template-columns: repeat(3, 1fr);
+					gap: 20px;
+				}
+				.stat {
+					border-bottom: 0;
+					border-right: 1px solid var(--line);
+				}
+				.project-layout {
+					grid-template-columns: 1fr;
+				}
+				.project-intro {
+					display: block;
+				}
+				.project-intro .section-title {
+					display: inline-block;
+					margin-right: 20px;
+				}
+				.project-intro .link {
+					float: right;
+					margin-top: 15px;
+				}
+				.strip-grid {
+					grid-template-columns: repeat(4, 1fr);
+				}
+				.experience {
+					display: none;
+				}
+			}
+			@media (max-width: 900px) {
+				.header {
+					height: 70px;
+				}
+				.mobile-toggle {
+					display: grid;
+				}
+				.header .btn {
+					display: none;
+				}
+				.nav {
+					position: absolute;
+					top: 70px;
+					left: 0;
+					right: 0;
+					background: #fff;
+					display: none;
+					flex-direction: column;
+					height: auto;
+					align-items: stretch;
+					gap: 0;
+					padding: 10px 28px 25px;
+					box-shadow: 0 20px 35px #0002;
+				}
+				.nav.open {
+					display: flex;
+				}
+				.nav a {
+					height: auto;
+					padding: 16px 0;
+					display: block;
+					border-bottom: 1px solid #e8ece8;
+				}
+				.hero {
+					min-height: 550px;
+				}
+				.hero h1 {
+					font-size: 56px;
+				}
+				.hero-counter {
+					display: none;
+				}
+				.strip-grid {
+					grid-template-columns: repeat(2, 1fr);
+					gap: 20px;
+				}
+				.strip-item {
+					border-right: 0;
+					margin: 0;
+				}
+				.projects-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+				.product-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+				.footer-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+			@media (max-width: 620px) {
+				.container {
+					padding-left: 20px;
+					padding-right: 20px;
+				}
+				.section {
+					padding: 62px 0;
+				}
+				.hero {
+					min-height: 620px;
+					align-items: start;
+				}
+				.hero .container {
+					padding-top: 85px;
+				}
+				.hero::before {
+					background: linear-gradient(
+						90deg,
+						rgba(235, 240, 235, 0.9),
+						rgba(233, 238, 234, 0.68) 75%,
+						rgba(20, 37, 25, 0.15)
+					);
+				}
+				.hero h1 {
+					font-size: clamp(44px, 11vw, 60px);
+				}
+				.hero p {
+					font-size: 17px;
+				}
+				.hero-footer {
+					right: 20px;
+					bottom: 16px;
+				}
+				.hero-caption {
+					display: none;
+				}
+				.strip-grid {
+					grid-template-columns: 1fr 1fr;
+					gap: 0;
+				}
+				.strip-item {
+					padding: 16px 8px 16px 0;
+					min-height: 120px;
+					gap: 9px;
+				}
+				.strip-item svg {
+					width: 23px;
+				}
+				.strip-item b {
+					font-size: 11px;
+				}
+				.about-grid {
+					grid-template-columns: 1fr;
+					gap: 28px;
+				}
+				.media-tile {
+					height: 250px;
+				}
+				.stats {
+					grid-template-columns: repeat(3, 1fr);
+					gap: 5px;
+				}
+				.stat {
+					display: block;
+					padding: 0 8px;
+				}
+				.stat strong {
+					font-size: 30px;
+					display: block;
+				}
+				.stat span {
+					font-size: 9px;
+				}
+				.projects-grid {
+					gap: 10px;
+				}
+				.project-photo {
+					height: 125px;
+				}
+				.project-info {
+					padding: 10px;
+				}
+				.project-info b {
+					font-size: 11px;
+				}
+				.project-intro .section-title {
+					font-size: 31px;
+				}
+				.product-grid {
+					grid-template-columns: 1fr;
+				}
+				.products-head {
+					align-items: start;
+				}
+				.cta-inner {
+					display: block;
+				}
+				.cta .btn {
+					margin-top: 28px;
+				}
+				.footer-grid {
+					grid-template-columns: 1fr 1fr;
+					gap: 27px;
+				}
+				.footer-grid > div:first-child {
+					grid-column: 1/-1;
+				}
+				.footer-bottom {
+					display: block;
+				}
+				.modal-panel {
+					padding: 28px 20px;
+				}
+				.header .brand-name {
+					font-size: 16px;
+				}
+			}
+			@media (prefers-reduced-motion: reduce) {
+				*,
+				*:before,
+				*:after {
+					scroll-behavior: auto !important;
+					transition: none !important;
+				}
+			}
+
+			/* Обновлённая компактная навигация и семипозиционный слайдер */
+			.hero-counter {
+				gap: 9px;
+				right: 43px;
+				padding: 10px 8px;
+				background: rgba(255, 255, 255, 0.38);
+				border-radius: 3px;
+				backdrop-filter: blur(9px);
+			}
+			.hero-counter span {
+				min-width: 24px;
+				text-align: center;
+				padding: 3px;
+				transition:
+					color 0.2s,
+					opacity 0.2s;
+			}
+			.hero-counter span:hover,
+			.hero-counter span:focus-visible {
+				color: #0d5e16;
+				opacity: 1;
+				outline-color: #0d5e16;
+			}
+			.hero::before {
+				background: linear-gradient(
+					90deg,
+					rgba(241, 246, 241, 0.92) 0%,
+					rgba(241, 245, 240, 0.72) 34%,
+					rgba(237, 243, 237, 0.16) 70%,
+					rgba(10, 23, 14, 0.12) 100%
+				);
+			}
+			@media (max-width: 700px) {
+				.hero-counter {
+					right: 12px;
+					top: auto;
+					bottom: 95px;
+					transform: none;
+					display: flex;
+					gap: 5px;
+				}
+				.hero-counter span {
+					min-width: 18px;
+					font-size: 10px;
+				}
+				.hero-footer {
+					bottom: 15px;
+				}
+			}
+
+			/* Новости и проверенные контакты */
+			.pmk-news {
+				background: #f3f6f3;
+			}
+			.pmk-sectiontop {
+				display: flex;
+				justify-content: space-between;
+				align-items: end;
+				margin-bottom: 28px;
+			}
+			.pmk-newsgrid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 20px;
+			}
+			.pmk-newscard {
+				background: #fff;
+				border: 1px solid #e2e9e2;
+				overflow: hidden;
+				transition:
+					transform 0.25s,
+					box-shadow 0.25s;
+			}
+			.pmk-newscard:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 12px 36px rgba(17, 42, 18, 0.08);
+			}
+			.pmk-newspic {
+				height: 185px;
+				overflow: hidden;
+			}
+			.pmk-newspic img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+				filter: saturate(0.75);
+			}
+			.pmk-newstext {
+				padding: 23px;
+			}
+			.pmk-meta,
+			.pmk-contactitem > span {
+				display: block;
+				color: #0d5e16;
+				font-size: 11px;
+				letter-spacing: 1.4px;
+				text-transform: uppercase;
+				font-weight: 700;
+			}
+			.pmk-newstext h3 {
+				font-size: 21px;
+				line-height: 1.25;
+				margin: 12px 0;
+				color: #162d1a;
+			}
+			.pmk-newstext p {
+				font-size: 14px;
+				line-height: 1.75;
+				color: #68766a;
+				margin: 0 0 18px;
+			}
+			.pmk-newstext a {
+				font-size: 13px;
+				font-weight: 700;
+				color: #0d5e16;
+				text-decoration: none;
+			}
+			.pmk-muted {
+				color: #718074;
+				font-size: 13px;
+			}
+			.pmk-contacts {
+				background: #fff;
+			}
+			.pmk-contactgrid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 45px;
+				margin-top: 34px;
+				align-items: stretch;
+			}
+			.pmk-contactinfo {
+				padding: 10px 0;
+			}
+			.pmk-contactitem {
+				padding: 16px 0;
+				border-bottom: 1px solid #e1e9e2;
+			}
+			.pmk-contactitem strong,
+			.pmk-contactitem a {
+				font-size: 18px;
+				color: #17351a;
+				display: block;
+				margin-top: 10px;
+				line-height: 1.5;
+				font-weight: 600;
+				text-decoration: none;
+			}
+			.pmk-contactitem a:hover {
+				color: #0d5e16;
+			}
+			.pmk-contactbuttons {
+				display: flex;
+				gap: 12px;
+				flex-wrap: wrap;
+				margin-top: 25px;
+			}
+			.pmk-source {
+				font-size: 12px;
+				line-height: 1.7;
+				color: #738076;
+				margin-top: 22px;
+			}
+			.pmk-contactvisual {
+				min-height: 390px;
+				position: relative;
+				display: block;
+				overflow: hidden;
+			}
+			.pmk-contactvisual > img {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				object-fit: cover;
+				filter: saturate(0.55) brightness(0.8);
+			}
+			.pmk-mapglass {
+				position: absolute;
+				bottom: 24px;
+				left: 24px;
+				right: 24px;
+				padding: 19px 22px;
+				background: rgba(255, 255, 255, 0.87);
+				backdrop-filter: blur(15px);
+				color: #15331a;
+				display: flex;
+				justify-content: space-between;
+				gap: 20px;
+				align-items: center;
+			}
+			.pmk-mapglass small {
+				font-size: 12px;
+				color: #0d5e16;
+			}
+			@media (max-width: 950px) {
+				.pmk-newsgrid {
+					grid-template-columns: 1fr 1fr;
+				}
+				.pmk-contactgrid {
+					gap: 20px;
+				}
+			}
+			@media (max-width: 680px) {
+				.pmk-newsgrid,
+				.pmk-contactgrid {
+					grid-template-columns: 1fr;
+				}
+				.pmk-newsgrid {
+					gap: 14px;
+				}
+				.pmk-mapglass {
+					display: block;
+				}
+				.pmk-mapglass small {
+					display: block;
+					margin-top: 7px;
+				}
+				.pmk-contactvisual {
+					min-height: 300px;
+				}
+				.pmk-contactitem strong,
+				.pmk-contactitem a {
+					font-size: 16px;
+				}
+			}
+
+			/* News page visual layer */
+			body {
+				background: #f7f8f6;
+			}
+			.news-shell {
+				max-width: 1320px;
+				padding: 0 28px;
+				margin: auto;
+			}
+			.news-hero {
+				padding: 66px 0 33px;
+				background: linear-gradient(120deg, #f4f7f3 0%, #fff 65%);
+				border-bottom: 1px solid #e9ebe8;
+			}
+			.news-breadcrumb {
+				font-size: 13px;
+				color: #798079;
+				display: flex;
+				gap: 12px;
+				align-items: center;
+				margin-bottom: 27px;
+			}
+			.news-breadcrumb a {
+				color: #667068;
+				text-decoration: none;
+			}
+			.news-breadcrumb a:hover {
+				color: #0d5e16;
+			}
+			.news-heading {
+				display: flex;
+				align-items: end;
+				justify-content: space-between;
+				gap: 22px;
+			}
+			.news-heading h1 {
+				font-size: clamp(40px, 5vw, 66px);
+				line-height: 1.05;
+				letter-spacing: -0.045em;
+				color: #141b17;
+				margin: 0;
+				font-weight: 700;
+			}
+			.news-heading p {
+				font-size: 15px;
+				color: #747d76;
+				margin: 12px 0 0;
+				max-width: 550px;
+				line-height: 1.75;
+			}
+			.news-heading-mark {
+				display: flex;
+				align-items: center;
+				gap: 12px;
+				color: #0d5e16;
+				letter-spacing: 0.16em;
+				text-transform: uppercase;
+				font-size: 10px;
+				font-weight: 700;
+				white-space: nowrap;
+			}
+			.news-heading-mark:before {
+				content: "";
+				width: 39px;
+				height: 1px;
+				background: #0d5e16;
+			}
+			.news-content-area {
+				padding: 41px 0 86px;
+			}
+			.news-filters {
+				display: flex;
+				justify-content: space-between;
+				gap: 20px;
+				align-items: center;
+				margin-bottom: 26px;
+				flex-wrap: wrap;
+			}
+			.category-tabs {
+				display: flex;
+				gap: 9px;
+				flex-wrap: wrap;
+			}
+			.category-tab {
+				cursor: pointer;
+				border: 1px solid #e0e5df;
+				border-radius: 6px;
+				background: #fff;
+				color: #424b44;
+				padding: 11px 17px;
+				font: 600 13px inherit;
+				transition: 0.2s;
+				font-size: 13px;
+			}
+			.category-tab:hover,
+			.category-tab[aria-pressed="true"] {
+				background: #0d5e16;
+				color: #fff;
+				border-color: #0d5e16;
+			}
+			.news-search {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				background: #fff;
+				border: 1px solid #e0e5df;
+				border-radius: 6px;
+				padding: 0 16px;
+				height: 45px;
+				min-width: 245px;
+			}
+			.news-search svg {
+				width: 17px;
+				color: #7b867d;
+			}
+			.news-search input {
+				outline: 0;
+				border: 0;
+				background: transparent;
+				width: 100%;
+				color: #1b231e;
+				font: inherit;
+				font-size: 13px;
+			}
+			.news-featured {
+				margin-bottom: 24px;
+			}
+			.news-card {
+				border: 1px solid #e7ebe5;
+				border-radius: 9px;
+				overflow: hidden;
+				background: #fff;
+				display: flex;
+				flex-direction: column;
+				min-width: 0;
+				transition:
+					transform 0.2s,
+					box-shadow 0.2s;
+			}
+			.news-card:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 16px 40px rgba(16, 41, 24, 0.06);
+			}
+			.news-photo {
+				height: 198px;
+				overflow: hidden;
+				position: relative;
+				display: block;
+				background: #e9efeb;
+			}
+			.news-photo img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+				transition: transform 0.45s ease;
+				filter: saturate(0.8);
+			}
+			.news-card:hover .news-photo img {
+				transform: scale(1.03);
+			}
+			.photo-note {
+				position: absolute;
+				bottom: 11px;
+				right: 12px;
+				background: rgba(255, 255, 255, 0.82);
+				backdrop-filter: blur(7px);
+				border-radius: 4px;
+				font-size: 10px;
+				letter-spacing: 0.04em;
+				color: #445349;
+				padding: 5px 8px;
+			}
+			.news-content {
+				padding: 23px 24px 25px;
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+			}
+			.news-meta {
+				display: flex;
+				align-items: center;
+				gap: 11px;
+				font-size: 11px;
+				font-weight: 600;
+				color: #0d5e16;
+				margin-bottom: 15px;
+			}
+			.news-meta time {
+				color: #889089;
+				font-weight: 400;
+			}
+			.meta-dot {
+				width: 3px;
+				height: 3px;
+				background: #b0b7b0;
+				border-radius: 50%;
+			}
+			.news-card h2 {
+				font-size: 19px;
+				line-height: 1.34;
+				letter-spacing: -0.02em;
+				color: #202921;
+				font-weight: 650;
+				margin: 0 0 12px;
+			}
+			.news-card p {
+				font-size: 13px;
+				line-height: 1.75;
+				color: #69736a;
+				margin: 0 0 25px;
+			}
+			.news-link {
+				margin-top: auto;
+				color: #0d5e16;
+				font-size: 13px;
+				font-weight: 700;
+				text-decoration: none;
+				display: inline-flex;
+				gap: 12px;
+				align-items: center;
+			}
+			.news-link:hover {
+				text-decoration: underline;
+			}
+			.news-featured .news-card {
+				display: grid;
+				grid-template-columns: 1.1fr 1fr;
+				min-height: 390px;
+			}
+			.news-featured .news-photo {
+				height: 100%;
+				min-height: 390px;
+			}
+			.news-featured .news-content {
+				padding: 47px 50px;
+				justify-content: center;
+			}
+			.news-featured h2 {
+				font-size: clamp(24px, 2.5vw, 35px);
+				line-height: 1.19;
+				max-width: 540px;
+			}
+			.news-featured p {
+				font-size: 14px;
+				max-width: 510px;
+			}
+			.news-grid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 22px;
+			}
+			.news-card[hidden] {
+				display: none !important;
+			}
+			.news-empty {
+				padding: 50px 20px;
+				text-align: center;
+				color: #717d73;
+				font-size: 15px;
+				display: none;
+			}
+			.news-empty.show {
+				display: block;
+			}
+			.news-summary {
+				font-size: 12px;
+				color: #78827a;
+				margin-top: 24px;
+			}
+			.news-info {
+				margin-top: 40px;
+				background: #edf4ee;
+				border: 1px solid #dceade;
+				border-radius: 8px;
+				padding: 20px 24px;
+				display: flex;
+				gap: 15px;
+				align-items: start;
+				color: #436048;
+				font-size: 13px;
+				line-height: 1.6;
+			}
+			.news-info strong {
+				color: #0d5e16;
+			}
+			@media (max-width: 1050px) {
+				.news-grid {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
+				.news-featured .news-content {
+					padding: 30px;
+				}
+				.news-featured .news-photo {
+					min-height: 320px;
+				}
+			}
+			@media (max-width: 680px) {
+				.news-shell {
+					padding: 0 17px;
+				}
+				.news-hero {
+					padding: 32px 0 27px;
+				}
+				.news-heading-mark {
+					display: none;
+				}
+				.news-filters {
+					align-items: stretch;
+				}
+				.news-search {
+					width: 100%;
+					min-width: 0;
+				}
+				.news-featured .news-card {
+					display: flex;
+					min-height: 0;
+				}
+				.news-featured .news-photo {
+					height: 230px;
+					min-height: 0;
+				}
+				.news-featured .news-content {
+					padding: 23px;
+				}
+				.news-featured h2 {
+					font-size: 23px;
+				}
+				.news-grid {
+					grid-template-columns: 1fr;
+				}
+				.news-photo {
+					height: 210px;
+				}
+				.news-content-area {
+					padding: 26px 0 45px;
+				}
+				.category-tab {
+					padding: 10px 13px;
+				}
+			}
+		</style></head
+	><body>
+		<header class="header"
+			><div class="container header-inner"
+				><a
+					aria-label="Жлобинская ПМК-71 — главная"
+					class="brand"
+					href="ПМК-71_главная_исправленная.html#home"
+					><svg aria-hidden="true" class="logo" viewbox="0 0 45 48">
+						<path
+							d="M4 43V17l9-7v33M13 43V5l11 5v33M24 43V21l9-6v28M33 43V28l8-4v19M4 43h37"
+						></path>
+						<path d="M17 14v4m0 5v4m0 5v4m11-10v4m0 5v4"></path></svg
+					><div class="brand-name">ЖЛОБИНСКАЯ<br />ПМК-71</div
+					><div class="brand-caption"
+						>строительство<br />монтаж<br />развитие</div
+					></a
+				><nav class="nav" id="nav"
+					><a href="ПМК-71_главная_исправленная.html#home">Главная</a
+					><a href="ПМК-71_главная_исправленная.html#about">О компании</a
+					><a href="ПМК-71_каталог_обновлённый.html">Продукция</a
+					><a class="active" href="ПМК-71_страница_новостей.html">Новости</a
+					><a href="ПМК-71_главная_исправленная.html#contacts">Контакты</a></nav
+				><div class="header-actions"
+					><a class="phone" href="ПМК-71_главная_исправленная.html#contacts"
+						><strong>Связаться с нами</strong
+						><small>Контакты предприятия</small></a
+					><button class="btn btn-primary" data-open-modal=""
+						>Оставить заявку <span class="arrow">→</span></button
+					><button
+						aria-expanded="false"
+						aria-label="Открыть меню"
+						class="icon-button mobile-toggle"
+						id="mobileToggle"
+						><svg
+							fill="none"
+							height="25"
+							stroke="currentColor"
+							stroke-width="1.7"
+							viewbox="0 0 24 24"
+							width="25"
+						>
+							<path
+								d="M3 6h18M3 12h18M3 18h18"
+							></path></svg></button></div></div
+		></header>
+		<main
+			><section class="news-hero"
+				><div class="news-shell"
+					><div class="news-breadcrumb"
+						><a href="ПМК-71_главная_исправленная.html">Главная</a><span>›</span
+						><span>Новости</span></div
+					><div class="news-heading"
+						><div
+							><h1>Новости</h1
+							><p
+								>События, строительные проекты и публикации о деятельности
+								предприятия.</p
+							></div
+						><div class="news-heading-mark">Жлобинская ПМК-71</div></div
+					></div
+				></section
+			>
+			<section class="news-content-area"
+				><div class="news-shell"
+					><div class="news-filters"
+						><div class="category-tabs" aria-label="Темы публикаций"
+							><button
+								class="category-tab"
+								type="button"
+								data-category="all"
+								aria-pressed="true"
+								>Все публикации</button
+							><button
+								class="category-tab"
+								type="button"
+								data-category="objects"
+								aria-pressed="false"
+								>Наши объекты</button
+							><button
+								class="category-tab"
+								type="button"
+								data-category="team"
+								aria-pressed="false"
+								>Люди и профессия</button
+							><button
+								class="category-tab"
+								type="button"
+								data-category="company"
+								aria-pressed="false"
+								>Предприятие</button
+							></div
+						><label class="news-search"
+							><svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="1.7"
+								aria-hidden="true"
+							>
+								<circle cx="10.8" cy="10.8" r="6.6" />
+								<path d="m16 16 5 5" /></svg
+							><input
+								id="newsSearch"
+								placeholder="Поиск по новостям…"
+								aria-label="Поиск по новостям" /></label></div
+					><div class="news-featured"
+						><article class="news-card is-featured" data-category="objects" data-text="в жлобинском районе открыли два новых молочно-товарных комплекса новы дзень сельское хозяйство">
+ <a class="news-photo" href="https://ndsmi.by/vlast/53353-v-zhlobinskom-rajone-otkryli-dva-novykh-molochno-tovarnykh-kompleksa" target="_blank" rel="noopener noreferrer" aria-label="Читать: В Жлобинском районе открыли два новых молочно-товарных комплекса">
+  <img src="../assets/news/0221.jpg" alt="В Жлобинском районе открыли два новых молочно-товарных комплекса" loading="lazy" />
+ </a>
+ <div class="news-content">
+  <div class="news-meta"><span>Наши объекты</span><span class="meta-dot"></span><span>«Новы дзень»</span></div>
+  <h2>В Жлобинском районе открыли два новых молочно-товарных комплекса</h2>
+  <p>Об открытии двух новых молочно-товарных комплексов в Жлобинском районе сообщает издание «Новы дзень». Подробности — в публикации источника.</p>
+  <a class="news-link" href="https://ndsmi.by/vlast/53353-v-zhlobinskom-rajone-otkryli-dva-novykh-molochno-tovarnykh-kompleksa" target="_blank" rel="noopener noreferrer">Читать источник <span aria-hidden="true">↗</span></a>
+ </div>
+</article></div
+					><div class="news-grid"
+						><article class="news-card" data-category="objects" data-text="музей детям жертвам войны красный берег жлобинский район историческая память"><a class="news-photo" href="https://museums.by/muzei/muzey-detyam-zhertvam-voyny/" target="_blank" rel="noopener noreferrer" aria-label="Подробнее о музее «Детям — жертвам войны»"><img src="../assets/news/MuseiKB.jpg" alt="Здание музея «Детям — жертвам войны» в Красном Береге" loading="lazy" /></a><div class="news-content"><div class="news-meta"><span>Культура и память</span><span class="meta-dot"></span><span>Красный Берег</span></div><h2>Музей «Детям — жертвам войны» в Красном Береге</h2><p>В Красном Береге Жлобинского района работает музей «Детям — жертвам войны». Он посвящён судьбам детей в годы Великой Отечественной войны и сохранению памяти о пережитой ими трагедии.</p><p>Музей дополняет мемориальный комплекс. Его экспозиция рассказывает о детстве до войны, в военные годы и в послевоенное время.</p><a class="news-link" href="https://museums.by/muzei/muzey-detyam-zhertvam-voyny/" target="_blank" rel="noopener noreferrer">Подробнее на Museums.by <span aria-hidden="true">↗</span></a></div></article><article class="news-card" data-category="team" data-text="работников жлобинской пмк-71 поздравили с днём строителя день строителя профессиональный праздник коллектив новы дзень">
+ <a class="news-photo" href="https://ndsmi.by/obshchestvo/51822-rabotnikov-zhlobinskoj-pmk-71-pozdravili-s-dnem-stroitelya" target="_blank" rel="noopener noreferrer" aria-label="Читать: Работников Жлобинской ПМК-71 поздравили с Днём строителя">
+  <img src="../assets/news/0223.jpg" alt="Коллектив Жлобинской ПМК-71 на праздничном мероприятии" loading="lazy" />
+ </a>
+ <div class="news-content">
+  <div class="news-meta"><span>Люди и профессия</span><span class="meta-dot"></span><span>День строителя</span></div>
+  <h2>Работников Жлобинской ПМК-71 поздравили с Днём строителя</h2>
+  <p>Коллектив Жлобинской ПМК-71 поздравили с профессиональным праздником — Днём строителя. О событии сообщает издание «Новы дзень».</p>
+  <a class="news-link" href="https://ndsmi.by/obshchestvo/51822-rabotnikov-zhlobinskoj-pmk-71-pozdravili-s-dnem-stroitelya" target="_blank" rel="noopener noreferrer">Читать материал «Новы дзень» <span aria-hidden="true">↗</span></a>
+ </div>
+</article>
+<article class="news-card" data-category="team" data-text="мобильная группа жлобинского райисполкома проверила охрану труда в стройотрядах пмк-71 ректа бобовка молодёжь несовершеннолетние">
+ <a class="news-photo" href="https://ndsmi.by/obshchestvo/52138-mobilnaya-gruppa-zhlobinskogo-rajispolkoma-proverila-okhranu-truda-v-strojotryadakh" target="_blank" rel="noopener noreferrer" aria-label="Читать: Мобильная группа проверила охрану труда в стройотрядах">
+  <img src="../assets/news/0222.jpg" alt="Проверка охраны труда на строительном объекте" loading="lazy" />
+ </a>
+ <div class="news-content">
+  <div class="news-meta"><span>Люди и профессия</span><span class="meta-dot"></span><span>Охрана труда</span></div>
+  <h2>Мобильная группа проверила охрану труда в стройотрядах</h2>
+  <p>На строительных объектах у Ректы и Бобовки мобильная группа Жлобинского райисполкома проверила соблюдение требований охраны труда. Здесь вместе со специалистами Жлобинской ПМК-71 работают участники молодёжных стройотрядов.</p>
+  <p>Особое внимание уделили условиям труда молодёжи, в том числе несовершеннолетних. Проверка прошла на строительстве коровников, доильно-молочного блока и цеха сухостойных коров с родильным отделением вблизи деревни Ректа, а также молочно-товарной фермы у Бобовки.</p>
+  <a class="news-link" href="https://ndsmi.by/obshchestvo/52138-mobilnaya-gruppa-zhlobinskogo-rajispolkoma-proverila-okhranu-truda-v-strojotryadakh" target="_blank" rel="noopener noreferrer">Читать материал «Новы дзень» <span aria-hidden="true">↗</span></a>
+  <a class="news-link" href="https://t.me/zlobin_21" target="_blank" rel="noopener noreferrer">Источник: Жлобин ИНФО <span aria-hidden="true">↗</span></a>
+ </div>
+</article>
+<article class="news-card" data-category="team" data-text="на стройобъектах жлобинского района стартовал месячник охраны труда «новы дзень» сообщает о начале месячника охраны труда на строительных объектах жлобинского района. подробности — в материале «безопасность — шаг за шагом»."><a class="news-photo" href="https://ndsmi.by/obshchestvo/52815-bezopasnost-shag-za-shagom-na-stroitelnykh-ob-ektakh-zhlobinskogo-rajona-startoval-mesyachnik-okhrany-truda" target="_blank" rel="noopener noreferrer" aria-label="Читать новость: Охрана труда на строительном объекте Жлобинского района"><img src="../assets/news/1101.jpg" alt="Охрана труда на строительном объекте Жлобинского района" loading="lazy" /></a><div class="news-content"><div class="news-meta">Охрана труда · «Новы дзень»</div><h2>На стройобъектах Жлобинского района стартовал месячник охраны труда</h2><p>«Новы дзень» сообщает о начале месячника охраны труда на строительных объектах Жлобинского района. Подробности — в материале «Безопасность — шаг за шагом».</p><a class="news-link" href="https://ndsmi.by/obshchestvo/52815-bezopasnost-shag-za-shagom-na-stroitelnykh-ob-ektakh-zhlobinskogo-rajona-startoval-mesyachnik-okhrany-truda" target="_blank" rel="noopener noreferrer">Читать источник <span aria-hidden="true">↗</span></a></div></article>
+<article class="news-card" data-category="objects" data-text="в парке «приднепровский» продолжается благоустройство в жлобине продолжают благоустраивать парк «приднепровский». о работах в городской зоне отдыха рассказывает издание «новы дзень»."><a class="news-photo" href="https://ndsmi.by/obshchestvo/52820-v-parke-pridneprovskij-prodolzhaetsya-blagoustrojstvo" target="_blank" rel="noopener noreferrer" aria-label="Читать новость: Благоустройство парка «Приднепровский»"><img src="../assets/news/1122.jpg" alt="Благоустройство парка «Приднепровский»" loading="lazy" /></a><div class="news-content"><div class="news-meta">Благоустройство · «Новы дзень»</div><h2>В парке «Приднепровский» продолжается благоустройство</h2><p>В Жлобине продолжают благоустраивать парк «Приднепровский». О работах в городской зоне отдыха рассказывает издание «Новы дзень».</p><a class="news-link" href="https://ndsmi.by/obshchestvo/52820-v-parke-pridneprovskij-prodolzhaetsya-blagoustrojstvo" target="_blank" rel="noopener noreferrer">Читать источник <span aria-hidden="true">↗</span></a></div></article>
+						
+						
+						
+						</div
+					><div class="news-empty" id="emptyState"
+						>По вашему запросу публикации не найдены.</div
+					><div class="news-summary" id="newsCount"></div
+					><div class="news-info"
+						><span aria-hidden="true">ⓘ</span
+						><div
+							><strong>Об источниках.</strong> Это учебная страница-агрегатор
+							публикаций из открытых источников, а не официальная новостная
+							лента предприятия. Даты, которых нет в проверяемом источнике,
+							помечены как уточняемые. Фотографии из материалов проекта
+							использованы как иллюстрации, а не как фотосвидетельства описанных
+							событий.</div
+						></div
+					></div
+				></section
+			></main
+		>
+		<footer class="footer"
+			><div class="container"
+				><div class="footer-grid"
+					><div
+						><a class="brand" href="ПМК-71_главная_исправленная.html#home"
+							><svg class="logo" viewbox="0 0 45 48">
+								<path
+									d="M4 43V17l9-7v33M13 43V5l11 5v33M24 43V21l9-6v28M33 43V28l8-4v19M4 43h37"
+								></path></svg
+							><div class="brand-name">ЖЛОБИНСКАЯ<br />ПМК-71</div></a
+						><p
+							>Демонстрационный дизайн корпоративного сайта строительной
+							организации.</p
+						></div
+					><div
+						><h4>Компания</h4><a href="ПМК-71_главная_исправленная.html#about">О компании</a
+						><a href="ПМК-71_главная_исправленная.html#projects">Наши объекты</a
+						><a href="ПМК-71_страница_новостей.html">Новости</a></div
+					><div
+						><h4>Информация</h4><a href="ПМК-71_каталог_обновлённый.html">Продукция</a
+						><a href="ПМК-71_главная_исправленная.html#contacts">Обратная связь</a
+						><a href="ПМК-71_главная_исправленная.html#home">Наверх</a></div
+					><div
+						><h4>Контакты</h4
+						><p
+							>г. Жлобин, ул. Первомайская, 144<br /><a href="tel:+375233452834"
+								>+375 (2334) 52-834</a
+							></p
+						><a href="ПМК-71_главная_исправленная.html#contacts">Все контакты →</a></div
+					></div
+				><div class="footer-bottom"
+					><span
+						>©
+						<span id="year"
+							>Учебный макет · Фотографии предоставлены для проекта</span
+						>
+						Жлобинская ПМК-71 · Концепт сайта</span
+					><span>Учебный макет · Фотографии иллюстративные</span></div
+				></div
+			></footer
+		><div
+			aria-labelledby="modalTitle"
+			aria-modal="true"
+			class="modal"
+			id="contactModal"
+			role="dialog"
+			><div class="modal-panel"
+				><button aria-label="Закрыть" class="modal-close" id="closeModal"
+					>×</button
+				><div class="eyebrow">Обратная связь</div
+				><h2 id="modalTitle">Оставить заявку</h2
+				><p class="subtle"
+					>Демонстрационная форма. Отправка на сервер пока не подключена.</p
+				><form id="contactForm"
+					><div class="form-group"
+						><label for="clientName">Ваше имя</label
+						><input
+							id="clientName"
+							maxlength="80"
+							name="name"
+							placeholder="Как к вам обращаться"
+							required="" /></div
+					><div class="form-group"
+						><label for="clientContact">Телефон или email</label
+						><input
+							id="clientContact"
+							maxlength="120"
+							name="contact"
+							placeholder="Контакт для связи"
+							required="" /></div
+					><div class="form-group"
+						><label for="clientMessage">Сообщение</label
+						><textarea
+							id="clientMessage"
+							name="message"
+							placeholder="Кратко опишите ваш запрос"
+							rows="4"
+						></textarea></div
+					><p class="form-note"
+						>Данные не передаются предприятию и не сохраняются на сервере.</p
+					><button class="btn btn-primary" type="submit"
+						>Проверить заполнение <span class="arrow">→</span></button
+					></form
+				></div
+			></div
+		><div class="toast" id="toast" role="status"></div
+		><script>
+			(() => {
+				"use strict";
+				const nav = document.getElementById("nav"),
+					toggle = document.getElementById("mobileToggle");
+				toggle?.addEventListener("click", () => {
+					const open = nav.classList.toggle("open");
+					toggle.setAttribute("aria-expanded", String(open));
+				});
+				nav?.querySelectorAll("a").forEach((a) =>
+					a.addEventListener("click", () => {
+						nav.classList.remove("open");
+						toggle?.setAttribute("aria-expanded", "false");
+					}),
+				);
+				const modal = document.getElementById("contactModal");
+				let lastFocus;
+				function close() {
+					modal?.classList.remove("open");
+					document.body.style.overflow = "";
+					lastFocus?.focus();
+				}
+				document.querySelectorAll("[data-open-modal]").forEach((el) =>
+					el.addEventListener("click", () => {
+						lastFocus = document.activeElement;
+						modal.classList.add("open");
+						document.body.style.overflow = "hidden";
+						document.getElementById("clientName")?.focus();
+					}),
+				);
+				document.getElementById("closeModal")?.addEventListener("click", close);
+				modal?.addEventListener("click", (e) => {
+					if (e.target === modal) close();
+				});
+				document.addEventListener("keydown", (e) => {
+					if (e.key === "Escape" && modal?.classList.contains("open")) close();
+				});
+				document
+					.getElementById("contactForm")
+					?.addEventListener("submit", (e) => {
+						e.preventDefault();
+						close();
+						const toast = document.getElementById("toast");
+						toast.textContent =
+							"Это демонстрационная форма — заявка не отправлена.";
+						toast.classList.add("show");
+						setTimeout(() => toast.classList.remove("show"), 4200);
+					});
+				const year = document.getElementById("year");
+				if (year) year.textContent = new Date().getFullYear();
+				const buttons = [...document.querySelectorAll(".category-tab")],
+					cards = [...document.querySelectorAll(".news-card")],
+					input = document.querySelector("#newsSearch");
+				let category = "all";
+				function update() {
+					const term = input.value.trim().toLocaleLowerCase("ru");
+					let count = 0;
+					cards.forEach((card) => {
+						const ok =
+							(category === "all" || card.dataset.category === category) &&
+							card.dataset.text.includes(term);
+						card.hidden = !ok;
+						if (ok) count++;
+					});
+					document.getElementById("newsCount").textContent =
+						"Показано материалов: " + count;
+					document
+						.getElementById("emptyState")
+						.classList.toggle("show", count === 0);
+				}
+				buttons.forEach((b) =>
+					b.addEventListener("click", () => {
+						category = b.dataset.category;
+						buttons.forEach((x) =>
+							x.setAttribute("aria-pressed", String(x === b)),
+						);
+						update();
+					}),
+				);
+				input.addEventListener("input", update);
+				update();
+			})();
+		</script></body
+	></html
+>
