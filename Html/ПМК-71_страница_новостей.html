@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="ru"
 	><head
@@ -1540,7 +1541,7 @@
 				><a
 					aria-label="Жлобинская ПМК-71 — главная"
 					class="brand"
-					href="ПМК-71_главная_исправленная.html#home"
+					href="{% url 'website:home' %}#home"
 					><svg aria-hidden="true" class="logo" viewbox="0 0 45 48">
 						<path
 							d="M4 43V17l9-7v33M13 43V5l11 5v33M24 43V21l9-6v28M33 43V28l8-4v19M4 43h37"
@@ -1551,13 +1552,13 @@
 						>строительство<br />монтаж<br />развитие</div
 					></a
 				><nav class="nav" id="nav"
-					><a href="ПМК-71_главная_исправленная.html#home">Главная</a
-					><a href="ПМК-71_главная_исправленная.html#about">О компании</a
-					><a href="ПМК-71_каталог_обновлённый.html">Продукция</a
-					><a class="active" href="ПМК-71_страница_новостей.html">Новости</a
-					><a href="ПМК-71_главная_исправленная.html#contacts">Контакты</a></nav
+					><a href="{% url 'website:home' %}#home">Главная</a
+					><a href="{% url 'website:home' %}#about">О компании</a
+					><a href="{% url 'website:catalog' %}">Продукция</a
+					><a class="active" href="{% url 'website:news' %}">Новости</a
+					><a href="{% url 'website:home' %}#contacts">Контакты</a></nav
 				><div class="header-actions"
-					><a class="phone" href="ПМК-71_главная_исправленная.html#contacts"
+					><a class="phone" href="{% url 'website:home' %}#contacts"
 						><strong>Связаться с нами</strong
 						><small>Контакты предприятия</small></a
 					><button class="btn btn-primary" data-open-modal=""
@@ -1583,7 +1584,7 @@
 			><section class="news-hero"
 				><div class="news-shell"
 					><div class="news-breadcrumb"
-						><a href="ПМК-71_главная_исправленная.html">Главная</a><span>›</span
+						><a href="{% url 'website:home' %}">Главная</a><span>›</span
 						><span>Новости</span></div
 					><div class="news-heading"
 						><div
@@ -1640,44 +1641,12 @@
 								placeholder="Поиск по новостям…"
 								aria-label="Поиск по новостям" /></label></div
 					><div class="news-featured"
-						><article class="news-card is-featured" data-category="objects" data-text="в жлобинском районе открыли два новых молочно-товарных комплекса новы дзень сельское хозяйство">
- <a class="news-photo" href="https://ndsmi.by/vlast/53353-v-zhlobinskom-rajone-otkryli-dva-novykh-molochno-tovarnykh-kompleksa" target="_blank" rel="noopener noreferrer" aria-label="Читать: В Жлобинском районе открыли два новых молочно-товарных комплекса">
-  <img src="../assets/news/0221.jpg" alt="В Жлобинском районе открыли два новых молочно-товарных комплекса" loading="lazy" />
- </a>
- <div class="news-content">
-  <div class="news-meta"><span>Наши объекты</span><span class="meta-dot"></span><span>«Новы дзень»</span></div>
-  <h2>В Жлобинском районе открыли два новых молочно-товарных комплекса</h2>
-  <p>Об открытии двух новых молочно-товарных комплексов в Жлобинском районе сообщает издание «Новы дзень». Подробности — в публикации источника.</p>
-  <a class="news-link" href="https://ndsmi.by/vlast/53353-v-zhlobinskom-rajone-otkryli-dva-novykh-molochno-tovarnykh-kompleksa" target="_blank" rel="noopener noreferrer">Читать источник <span aria-hidden="true">↗</span></a>
- </div>
-</article></div
+						>{% if featured_news %}{% include "website/news_card.html" with item=featured_news featured=True %}{% endif %}</div
 					><div class="news-grid"
-						><article class="news-card" data-category="objects" data-text="музей детям жертвам войны красный берег жлобинский район историческая память"><a class="news-photo" href="https://museums.by/muzei/muzey-detyam-zhertvam-voyny/" target="_blank" rel="noopener noreferrer" aria-label="Подробнее о музее «Детям — жертвам войны»"><img src="../assets/news/MuseiKB.jpg" alt="Здание музея «Детям — жертвам войны» в Красном Береге" loading="lazy" /></a><div class="news-content"><div class="news-meta"><span>Культура и память</span><span class="meta-dot"></span><span>Красный Берег</span></div><h2>Музей «Детям — жертвам войны» в Красном Береге</h2><p>В Красном Береге Жлобинского района работает музей «Детям — жертвам войны». Он посвящён судьбам детей в годы Великой Отечественной войны и сохранению памяти о пережитой ими трагедии.</p><p>Музей дополняет мемориальный комплекс. Его экспозиция рассказывает о детстве до войны, в военные годы и в послевоенное время.</p><a class="news-link" href="https://museums.by/muzei/muzey-detyam-zhertvam-voyny/" target="_blank" rel="noopener noreferrer">Подробнее на Museums.by <span aria-hidden="true">↗</span></a></div></article><article class="news-card" data-category="team" data-text="работников жлобинской пмк-71 поздравили с днём строителя день строителя профессиональный праздник коллектив новы дзень">
- <a class="news-photo" href="https://ndsmi.by/obshchestvo/51822-rabotnikov-zhlobinskoj-pmk-71-pozdravili-s-dnem-stroitelya" target="_blank" rel="noopener noreferrer" aria-label="Читать: Работников Жлобинской ПМК-71 поздравили с Днём строителя">
-  <img src="../assets/news/0223.jpg" alt="Коллектив Жлобинской ПМК-71 на праздничном мероприятии" loading="lazy" />
- </a>
- <div class="news-content">
-  <div class="news-meta"><span>Люди и профессия</span><span class="meta-dot"></span><span>День строителя</span></div>
-  <h2>Работников Жлобинской ПМК-71 поздравили с Днём строителя</h2>
-  <p>Коллектив Жлобинской ПМК-71 поздравили с профессиональным праздником — Днём строителя. О событии сообщает издание «Новы дзень».</p>
-  <a class="news-link" href="https://ndsmi.by/obshchestvo/51822-rabotnikov-zhlobinskoj-pmk-71-pozdravili-s-dnem-stroitelya" target="_blank" rel="noopener noreferrer">Читать материал «Новы дзень» <span aria-hidden="true">↗</span></a>
- </div>
-</article>
-<article class="news-card" data-category="team" data-text="мобильная группа жлобинского райисполкома проверила охрану труда в стройотрядах пмк-71 ректа бобовка молодёжь несовершеннолетние">
- <a class="news-photo" href="https://ndsmi.by/obshchestvo/52138-mobilnaya-gruppa-zhlobinskogo-rajispolkoma-proverila-okhranu-truda-v-strojotryadakh" target="_blank" rel="noopener noreferrer" aria-label="Читать: Мобильная группа проверила охрану труда в стройотрядах">
-  <img src="../assets/news/0222.jpg" alt="Проверка охраны труда на строительном объекте" loading="lazy" />
- </a>
- <div class="news-content">
-  <div class="news-meta"><span>Люди и профессия</span><span class="meta-dot"></span><span>Охрана труда</span></div>
-  <h2>Мобильная группа проверила охрану труда в стройотрядах</h2>
-  <p>На строительных объектах у Ректы и Бобовки мобильная группа Жлобинского райисполкома проверила соблюдение требований охраны труда. Здесь вместе со специалистами Жлобинской ПМК-71 работают участники молодёжных стройотрядов.</p>
-  <p>Особое внимание уделили условиям труда молодёжи, в том числе несовершеннолетних. Проверка прошла на строительстве коровников, доильно-молочного блока и цеха сухостойных коров с родильным отделением вблизи деревни Ректа, а также молочно-товарной фермы у Бобовки.</p>
-  <a class="news-link" href="https://ndsmi.by/obshchestvo/52138-mobilnaya-gruppa-zhlobinskogo-rajispolkoma-proverila-okhranu-truda-v-strojotryadakh" target="_blank" rel="noopener noreferrer">Читать материал «Новы дзень» <span aria-hidden="true">↗</span></a>
-  <a class="news-link" href="https://t.me/zlobin_21" target="_blank" rel="noopener noreferrer">Источник: Жлобин ИНФО <span aria-hidden="true">↗</span></a>
- </div>
-</article>
-<article class="news-card" data-category="team" data-text="на стройобъектах жлобинского района стартовал месячник охраны труда «новы дзень» сообщает о начале месячника охраны труда на строительных объектах жлобинского района. подробности — в материале «безопасность — шаг за шагом»."><a class="news-photo" href="https://ndsmi.by/obshchestvo/52815-bezopasnost-shag-za-shagom-na-stroitelnykh-ob-ektakh-zhlobinskogo-rajona-startoval-mesyachnik-okhrany-truda" target="_blank" rel="noopener noreferrer" aria-label="Читать новость: Охрана труда на строительном объекте Жлобинского района"><img src="../assets/news/1101.jpg" alt="Охрана труда на строительном объекте Жлобинского района" loading="lazy" /></a><div class="news-content"><div class="news-meta">Охрана труда · «Новы дзень»</div><h2>На стройобъектах Жлобинского района стартовал месячник охраны труда</h2><p>«Новы дзень» сообщает о начале месячника охраны труда на строительных объектах Жлобинского района. Подробности — в материале «Безопасность — шаг за шагом».</p><a class="news-link" href="https://ndsmi.by/obshchestvo/52815-bezopasnost-shag-za-shagom-na-stroitelnykh-ob-ektakh-zhlobinskogo-rajona-startoval-mesyachnik-okhrany-truda" target="_blank" rel="noopener noreferrer">Читать источник <span aria-hidden="true">↗</span></a></div></article>
-<article class="news-card" data-category="objects" data-text="в парке «приднепровский» продолжается благоустройство в жлобине продолжают благоустраивать парк «приднепровский». о работах в городской зоне отдыха рассказывает издание «новы дзень»."><a class="news-photo" href="https://ndsmi.by/obshchestvo/52820-v-parke-pridneprovskij-prodolzhaetsya-blagoustrojstvo" target="_blank" rel="noopener noreferrer" aria-label="Читать новость: Благоустройство парка «Приднепровский»"><img src="../assets/news/1122.jpg" alt="Благоустройство парка «Приднепровский»" loading="lazy" /></a><div class="news-content"><div class="news-meta">Благоустройство · «Новы дзень»</div><h2>В парке «Приднепровский» продолжается благоустройство</h2><p>В Жлобине продолжают благоустраивать парк «Приднепровский». О работах в городской зоне отдыха рассказывает издание «Новы дзень».</p><a class="news-link" href="https://ndsmi.by/obshchestvo/52820-v-parke-pridneprovskij-prodolzhaetsya-blagoustrojstvo" target="_blank" rel="noopener noreferrer">Читать источник <span aria-hidden="true">↗</span></a></div></article>
+						>{% for item in news_items %}{% include "website/news_card.html" with featured=False %}{% endfor %}
+
+
+
 						
 						
 						
@@ -1703,7 +1672,7 @@
 			><div class="container"
 				><div class="footer-grid"
 					><div
-						><a class="brand" href="ПМК-71_главная_исправленная.html#home"
+						><a class="brand" href="{% url 'website:home' %}#home"
 							><svg class="logo" viewbox="0 0 45 48">
 								<path
 									d="M4 43V17l9-7v33M13 43V5l11 5v33M24 43V21l9-6v28M33 43V28l8-4v19M4 43h37"
@@ -1714,20 +1683,20 @@
 							организации.</p
 						></div
 					><div
-						><h4>Компания</h4><a href="ПМК-71_главная_исправленная.html#about">О компании</a
-						><a href="ПМК-71_главная_исправленная.html#projects">Наши объекты</a
-						><a href="ПМК-71_страница_новостей.html">Новости</a></div
+						><h4>Компания</h4><a href="{% url 'website:home' %}#about">О компании</a
+						><a href="{% url 'website:home' %}#projects">Наши объекты</a
+						><a href="{% url 'website:news' %}">Новости</a></div
 					><div
-						><h4>Информация</h4><a href="ПМК-71_каталог_обновлённый.html">Продукция</a
-						><a href="ПМК-71_главная_исправленная.html#contacts">Обратная связь</a
-						><a href="ПМК-71_главная_исправленная.html#home">Наверх</a></div
+						><h4>Информация</h4><a href="{% url 'website:catalog' %}">Продукция</a
+						><a href="{% url 'website:home' %}#contacts">Обратная связь</a
+						><a href="{% url 'website:home' %}#home">Наверх</a></div
 					><div
 						><h4>Контакты</h4
 						><p
 							>г. Жлобин, ул. Первомайская, 144<br /><a href="tel:+375233452834"
 								>+375 (2334) 52-834</a
 							></p
-						><a href="ПМК-71_главная_исправленная.html#contacts">Все контакты →</a></div
+						><a href="{% url 'website:home' %}#contacts">Все контакты →</a></div
 					></div
 				><div class="footer-bottom"
 					><span

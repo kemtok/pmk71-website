@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="ru"
 	><head
@@ -754,7 +755,7 @@
 				><a
 					aria-label="Жлобинская ПМК-71 — главная"
 					class="brand"
-					href="ПМК-71_главная_исправленная.html#home"
+					href="{% url 'website:home' %}#home"
 					><svg aria-hidden="true" class="logo" viewbox="0 0 45 48">
 						<path
 							d="M4 43V17l9-7v33M13 43V5l11 5v33M24 43V21l9-6v28M33 43V28l8-4v19M4 43h37"
@@ -765,13 +766,13 @@
 						>строительство<br />монтаж<br />развитие</div
 					></a
 				><nav class="nav" id="nav"
-					><a href="ПМК-71_главная_исправленная.html#home">Главная</a
-					><a href="ПМК-71_главная_исправленная.html#about">О компании</a
-					><a class="active" href="ПМК-71_каталог_обновлённый.html">Продукция</a
-					><a href="ПМК-71_страница_новостей.html">Новости</a
-					><a href="ПМК-71_главная_исправленная.html#contacts">Контакты</a></nav
+					><a href="{% url 'website:home' %}#home">Главная</a
+					><a href="{% url 'website:home' %}#about">О компании</a
+					><a class="active" href="{% url 'website:catalog' %}">Продукция</a
+					><a href="{% url 'website:news' %}">Новости</a
+					><a href="{% url 'website:home' %}#contacts">Контакты</a></nav
 				><div class="header-actions"
-					><a class="phone" href="ПМК-71_главная_исправленная.html#contacts"
+					><a class="phone" href="{% url 'website:home' %}#contacts"
 						><strong>Связаться с нами</strong
 						><small>Контакты предприятия</small></a
 					><button class="btn btn-primary" data-open-modal=""
@@ -815,7 +816,7 @@
 		<main class="catalog"
 			><div class="container"
 				><div class="breadcrumb"
-					><a href="ПМК-71_главная_исправленная.html">Главная</a><span> / </span
+					><a href="{% url 'website:home' %}">Главная</a><span> / </span
 					><span>Продукция</span></div
 				><div class="topline"
 					><h1>Каталог</h1
@@ -825,17 +826,8 @@
 					><aside class="sidebar"
 						><h2>Категории</h2
 						><div class="category-filter" id="categories"
-							><button class="cat-btn active" data-category="Все"
-								>Все товары <span>9</span></button
-							><button class="cat-btn" data-category="Бетон"
-								>Товарный бетон <span>2</span></button
-							><button class="cat-btn" data-category="Железобетон"
-								>Железобетонные изделия <span>3</span></button
-							><button class="cat-btn" data-category="Благоустройство"
-								>Благоустройство <span>2</span></button
-							><button class="cat-btn" data-category="Прочие материалы"
-								>Другие материалы <span>2</span></button
-							></div
+							><button class="cat-btn active" data-category="Все">Все <span>{{ product_count }}</span></button>
+{% for group in categories %}<button class="cat-btn" data-category="{{ group.category }}">{{ group.category }} <span>{{ group.count }}</span></button>{% endfor %}</div
 						><div class="sidebar-note"
 							><strong>Информация о продукции</strong>Конкретные марки бетона и
 							изделия указаны по опубликованным объявлениям. Другие позиции
@@ -867,235 +859,13 @@
 								><option value="za">По названию: Я–А</option></select
 							></div
 						><div class="grid" id="grid"
-							><article
-								class="product-card"
-								data-category="Бетон"
-								data-name="бетон м150"
-							>
-								<div class="photo"
-									><img
-										src="../assets/products/beton-m150.png"
-										alt="Предметное иллюстративное изображение: Бетон М150"
-										loading="lazy"
-								/></div>
-								<div class="product-body"
-									><div class="product-category">Бетон</div><h3>Бетон М150</h3
-									><p>Товарная бетонная смесь</p
-									><div class="price-row"
-										><span>Цена по запросу <small>Ед. изм.: м³</small></span
-										><button
-											type="button"
-											class="product-action"
-											data-product="Бетон М150"
-											>Запросить цену <span aria-hidden="true">↗</span></button
-										></div
-									></div
-								></article
-							>
-							<article
-								class="product-card"
-								data-category="Бетон"
-								data-name="бетон м200"
-							>
-								<div class="photo"
-									><img
-										src="../assets/products/beton-m200.png"
-										alt="Предметное иллюстративное изображение: Бетон М200"
-										loading="lazy"
-								/></div>
-								<div class="product-body"
-									><div class="product-category">Бетон</div><h3>Бетон М200</h3
-									><p>Товарная бетонная смесь</p
-									><div class="price-row"
-										><span>Цена по запросу <small>Ед. изм.: м³</small></span
-										><button
-											type="button"
-											class="product-action"
-											data-product="Бетон М200"
-											>Запросить цену <span aria-hidden="true">↗</span></button
-										></div
-									></div
-								></article
-							>
-							<article
-								class="product-card"
-								data-category="Железобетон"
-								data-name="кольцо колодезное кс-10-9"
-							>
-								<div class="photo"
-									><img
-										src="../assets/products/ks-10-9.png"
-										alt="Предметное иллюстративное изображение: Кольцо колодезное КС-10-9"
-										loading="lazy"
-								/></div>
-								<div class="product-body"
-									><div class="product-category">Железобетон</div
-									><h3>Кольцо колодезное КС-10-9</h3
-									><p>Железобетонное кольцо для колодцев</p
-									><div class="price-row"
-										><span>Цена по запросу <small>Ед. изм.: шт.</small></span
-										><button
-											type="button"
-											class="product-action"
-											data-product="Кольцо колодезное КС-10-9"
-											>Запросить цену <span aria-hidden="true">↗</span></button
-										></div
-									></div
-								></article
-							>
-							<article
-								class="product-card"
-								data-category="Железобетон"
-								data-name="кольцо колодезное кс-15-9"
-							>
-								<div class="photo"
-									><img
-										src="../assets/products/ks-15-9.png"
-										alt="Предметное иллюстративное изображение: Кольцо колодезное КС-15-9"
-										loading="lazy"
-								/></div>
-								<div class="product-body"
-									><div class="product-category">Железобетон</div
-									><h3>Кольцо колодезное КС-15-9</h3
-									><p>Железобетонное кольцо для колодцев</p
-									><div class="price-row"
-										><span>Цена по запросу <small>Ед. изм.: шт.</small></span
-										><button
-											type="button"
-											class="product-action"
-											data-product="Кольцо колодезное КС-15-9"
-											>Запросить цену <span aria-hidden="true">↗</span></button
-										></div
-									></div
-								></article
-							>
-							<article
-								class="product-card"
-								data-category="Железобетон"
-								data-name="плита покрытия пп-15"
-							>
-								<div class="photo"
-									><img
-										src="../assets/products/pp-15.png"
-										alt="Предметное иллюстративное изображение: Плита покрытия ПП-15"
-										loading="lazy"
-								/></div>
-								<div class="product-body"
-									><div class="product-category">Железобетон</div
-									><h3>Плита покрытия ПП-15</h3
-									><p>Железобетонная плита покрытия колодца</p
-									><div class="price-row"
-										><span>Цена по запросу <small>Ед. изм.: шт.</small></span
-										><button
-											type="button"
-											class="product-action"
-											data-product="Плита покрытия ПП-15"
-											>Запросить цену <span aria-hidden="true">↗</span></button
-										></div
-									></div
-								></article
-							>
-							<article
-								class="product-card"
-								data-category="Благоустройство"
-								data-name="тротуарная плитка"
-							>
-								<div class="photo"
-									><img
-										src="../assets/products/plitka.png"
-										alt="Предметное иллюстративное изображение: Тротуарная плитка"
-										loading="lazy"
-								/></div>
-								<div class="product-body"
-									><div class="product-category">Благоустройство</div
-									><h3>Тротуарная плитка</h3
-									><p>Ассортимент и размеры — по запросу</p
-									><div class="price-row"
-										><span>Цена по запросу <small>Ед. изм.: м²</small></span
-										><button
-											type="button"
-											class="product-action"
-											data-product="Тротуарная плитка"
-											>Запросить цену <span aria-hidden="true">↗</span></button
-										></div
-									></div
-								></article
-							>
-							<article
-								class="product-card"
-								data-category="Благоустройство"
-								data-name="бордюры"
-							>
-								<div class="photo"
-									><img
-										src="../assets/products/bordur.png"
-										alt="Предметное иллюстративное изображение: Бордюры"
-										loading="lazy"
-								/></div>
-								<div class="product-body"
-									><div class="product-category">Благоустройство</div
-									><h3>Бордюры</h3><p>Типы и размеры — по запросу</p
-									><div class="price-row"
-										><span>Цена по запросу <small>Ед. изм.: шт.</small></span
-										><button
-											type="button"
-											class="product-action"
-											data-product="Бордюры"
-											>Запросить цену <span aria-hidden="true">↗</span></button
-										></div
-									></div
-								></article
-							>
-							<article
-								class="product-card"
-								data-category="Прочие материалы"
-								data-name="дренажные трубы"
-							>
-								<div class="photo"
-									><img
-										src="../assets/products/drenazh.png"
-										alt="Предметное иллюстративное изображение: Дренажные трубы"
-										loading="lazy"
-								/></div>
-								<div class="product-body"
-									><div class="product-category">Прочие материалы</div
-									><h3>Дренажные трубы</h3><p>Номенклатура — по запросу</p
-									><div class="price-row"
-										><span>Цена по запросу <small>Ед. изм.: шт.</small></span
-										><button
-											type="button"
-											class="product-action"
-											data-product="Дренажные трубы"
-											>Запросить цену <span aria-hidden="true">↗</span></button
-										></div
-									></div
-								></article
-							>
-							<article
-								class="product-card"
-								data-category="Прочие материалы"
-								data-name="асфальт"
-							>
-								<div class="photo"
-									><img
-										src="../assets/products/asfalt.png"
-										alt="Предметное иллюстративное изображение: Асфальт"
-										loading="lazy"
-								/></div>
-								<div class="product-body"
-									><div class="product-category">Прочие материалы</div
-									><h3>Асфальт</h3><p>Марка и объём поставки — по запросу</p
-									><div class="price-row"
-										><span>Цена по запросу <small>Ед. изм.: т</small></span
-										><button
-											type="button"
-											class="product-action"
-											data-product="Асфальт"
-											>Запросить цену <span aria-hidden="true">↗</span></button
-										></div
-									></div
-								></article
-							></div
+							>{% for item in products %}
+<article class="product-card" data-category="{{ item.category }}" data-name="{{ item.name|lower }}">
+<div class="photo">{% if item.image %}<img src="{{ item.image.url }}" alt="{{ item.name }}" loading="lazy">{% endif %}</div>
+<div class="product-body"><div class="product-category">{{ item.category }}</div><h3>{{ item.name }}</h3><p>{{ item.description }}</p>
+<div class="price-row"><span>{% if item.price != None %}{{ item.price }} BYN{% else %}Цена по запросу{% endif %}<small>Ед. изм.: {{ item.unit }}</small></span>
+<button type="button" class="product-action" data-product="{{ item.name }}" data-product-id="{{ item.pk }}">Заказать <span aria-hidden="true">↗</span></button></div></div></article>
+{% endfor %}</div
 						><div class="empty" id="empty"
 							>По вашему запросу товары не найдены.</div
 						></div
@@ -1112,37 +882,23 @@
 				></div
 			></footer
 		>
-		<div
-			class="modal"
-			id="requestModal"
-			role="dialog"
-			aria-modal="true"
-			aria-labelledby="requestTitle"
-			aria-hidden="true"
-			><div class="modal-panel"
-				><button class="close" id="closeModal" aria-label="Закрыть">×</button
-				><h2 id="requestTitle">Запросить стоимость</h2
-				><p
-					>Для уточнения цены и наличия свяжитесь с отделом сбыта. Форма ниже
-					демонстрационная и не отправляет данные на сервер.</p
-				><label>Продукция<input id="requestedProduct" readonly /></label
-				><label>Ваше имя<input id="customer" placeholder="Имя" /></label
-				><label
-					>Комментарий<textarea
-						id="comment"
-						placeholder="Объём, количество или дополнительные вопросы"
-					></textarea></label
-				><div class="dialog-actions"
-					><a href="tel:+375293566001">Позвонить: +375 29 356-60-01</a
-					><button class="btn btn-primary" id="copyRequest"
-						>Скопировать заявку</button
-					></div
-				><p class="form-note"
-					>После копирования отправьте заявку предприятию удобным способом.</p
-				></div
-			></div
-		>
-		<script>
+		<div class="modal" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="requestTitle" aria-hidden="true">
+<div class="modal-panel">
+<button type="button" class="close" id="closeModal" aria-label="Закрыть">×</button>
+<h2 id="requestTitle">Заказать продукцию</h2>
+<p>Оставьте контакты — отдел продаж свяжется с вами для уточнения заказа.</p>
+<form id="orderForm" action="{% url 'website:submit_order' %}" method="post">
+{% csrf_token %}
+<input type="hidden" name="product" id="orderProductId">
+<input type="hidden" name="submission_id" id="submissionId">
+<label>Продукция<input id="requestedProduct" readonly></label>
+<label>Ваше имя<input id="customer" name="customer_name" autocomplete="name" maxlength="100" required></label>
+<label>Номер телефона<input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="+375 ..." required></label>
+<label>Комментарий<textarea id="comment" name="comment" maxlength="3000" placeholder="Количество, объём, доставка или другие пожелания"></textarea></label>
+<p id="orderMessage" role="status" aria-live="polite"></p>
+<div class="dialog-actions"><button type="submit" class="btn btn-primary" id="sendOrder">Отправить заявку</button></div>
+</form></div></div>
+<script>
 			(() => {
 				const cards = [...document.querySelectorAll(".product-card")],
 					catBtns = [...document.querySelectorAll(".cat-btn")],
@@ -1180,58 +936,71 @@
 						update();
 					}),
 				);
-				search.addEventListener("input", update);
+				update();
+search.addEventListener("input", update);
 				sort.addEventListener("change", update);
 				const menu = document.getElementById("mobileToggle"),
 					mobile = document.getElementById("mobileLinks");
 				if (menu)
 					menu.addEventListener("click", () => {
-						let open = mobile.classList.toggle("open");
+						let open = mobile?.classList.toggle("open");
 						menu.setAttribute("aria-expanded", String(open));
 					});
 				const modal = document.getElementById("requestModal");
-				function openModal(name) {
-					document.getElementById("requestedProduct").value =
-						name || "Общий запрос";
-					modal.classList.add("open");
-					modal.setAttribute("aria-hidden", "false");
-				}
-				function closeModal() {
-					modal.classList.remove("open");
-					modal.setAttribute("aria-hidden", "true");
-				}
-				document
-					.querySelectorAll("[data-product]")
-					.forEach((b) =>
-						b.addEventListener("click", () => openModal(b.dataset.product)),
-					);
-				document
-					.querySelectorAll("[data-open-modal]")
-					.forEach((b) =>
-						b.addEventListener("click", () => openModal("Общий запрос")),
-					);
-				document
-					.getElementById("closeModal")
-					.addEventListener("click", closeModal);
-				modal.addEventListener("click", (e) => {
-					if (e.target === modal) closeModal();
-				});
-				document.addEventListener("keydown", (e) => {
-					if (e.key === "Escape") closeModal();
-				});
-				document.getElementById("copyRequest").addEventListener("click", () => {
-					const t =
-						"Заявка в ПМК-71\nПродукция: " +
-						document.getElementById("requestedProduct").value +
-						"\nИмя: " +
-						document.getElementById("customer").value +
-						"\nКомментарий: " +
-						document.getElementById("comment").value;
-					navigator.clipboard
-						?.writeText(t)
-						.then(() => alert("Заявка скопирована. Отправьте её предприятию."))
-						.catch(() => prompt("Скопируйте текст заявки:", t));
-				});
+const form = document.getElementById("orderForm");
+const message = document.getElementById("orderMessage");
+const submit = document.getElementById("sendOrder");
+let lastFocus;
+function openModal(name, id) {
+ lastFocus = document.activeElement;
+ form.reset();
+ message.textContent = "";
+ submit.disabled = false;
+ document.getElementById("submissionId").value = crypto.randomUUID();
+ document.getElementById("orderProductId").value = id || "";
+ document.getElementById("requestedProduct").value = name || "Общий запрос";
+ modal.classList.add("open");
+ modal.setAttribute("aria-hidden", "false");
+ document.getElementById("customer").focus();
+}
+function closeModal() {
+ modal.classList.remove("open");
+ modal.setAttribute("aria-hidden", "true");
+ lastFocus?.focus();
+}
+document.querySelectorAll("[data-product]").forEach(b => b.addEventListener("click", () => openModal(b.dataset.product, b.dataset.productId)));
+document.querySelectorAll("[data-open-modal]").forEach(b => b.addEventListener("click", () => openModal()));
+document.getElementById("closeModal").addEventListener("click", closeModal);
+modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+document.addEventListener("keydown", e => {
+ if (!modal.classList.contains("open")) return;
+ if (e.key === "Escape") closeModal();
+ if (e.key === "Tab") {
+  const nodes = [...modal.querySelectorAll("button:not(:disabled), input:not([type=hidden]), textarea")];
+  const first = nodes[0], last = nodes[nodes.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+ }
+});
+form.addEventListener("submit", async e => {
+ e.preventDefault();
+ if (submit.disabled || !form.reportValidity()) return;
+ submit.disabled = true;
+ message.textContent = "Отправляем заявку…";
+ try {
+  const response = await fetch(form.action, {method: "POST", body: new FormData(form), credentials: "same-origin"});
+  const data = await response.json();
+  if (!response.ok) {
+   message.textContent = data.errors ? Object.values(data.errors).flat().map(e => e.message).join(" ") : "Не удалось отправить заявку. Попробуйте ещё раз.";
+   submit.disabled = false;
+   return;
+  }
+  message.textContent = data.message;
+ } catch {
+  message.textContent = "Нет связи с сервером. Проверьте подключение и повторите отправку.";
+  submit.disabled = false;
+ }
+});
 			})();
 		</script></body
 	></html

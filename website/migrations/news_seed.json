@@ -1,0 +1,62 @@
+[
+  {
+    "title": "В Жлобинском районе открыли два новых молочно-товарных комплекса",
+    "summary": "Об открытии двух новых молочно-товарных комплексов в Жлобинском районе сообщает издание «Новы дзень». Подробности — в публикации источника.",
+    "body": "",
+    "image": "news/0221.jpg",
+    "source_url": "https://ndsmi.by/vlast/53353-v-zhlobinskom-rajone-otkryli-dva-novykh-molochno-tovarnykh-kompleksa",
+    "category": "objects",
+    "is_featured": true,
+    "position": 0
+  },
+  {
+    "title": "Музей «Детям — жертвам войны» в Красном Береге",
+    "summary": "В Красном Береге Жлобинского района работает музей «Детям — жертвам войны». Он посвящён судьбам детей в годы Великой Отечественной войны и сохранению памяти о пережитой ими трагедии.",
+    "body": "Музей дополняет мемориальный комплекс. Его экспозиция рассказывает о детстве до войны, в военные годы и в послевоенное время.",
+    "image": "news/MuseiKB.jpg",
+    "source_url": "https://museums.by/muzei/muzey-detyam-zhertvam-voyny/",
+    "category": "objects",
+    "is_featured": false,
+    "position": 1
+  },
+  {
+    "title": "Работников Жлобинской ПМК-71 поздравили с Днём строителя",
+    "summary": "Коллектив Жлобинской ПМК-71 поздравили с профессиональным праздником — Днём строителя. О событии сообщает издание «Новы дзень».",
+    "body": "",
+    "image": "news/0223.jpg",
+    "source_url": "https://ndsmi.by/obshchestvo/51822-rabotnikov-zhlobinskoj-pmk-71-pozdravili-s-dnem-stroitelya",
+    "category": "team",
+    "is_featured": false,
+    "position": 2
+  },
+  {
+    "title": "Мобильная группа проверила охрану труда в стройотрядах",
+    "summary": "На строительных объектах у Ректы и Бобовки мобильная группа Жлобинского райисполкома проверила соблюдение требований охраны труда. Здесь вместе со специалистами Жлобинской ПМК-71 работают участники молодёжных стройотрядов.",
+    "body": "Особое внимание уделили условиям труда молодёжи, в том числе несовершеннолетних. Проверка прошла на строительстве коровников, доильно-молочного блока и цеха сухостойных коров с родильным отделением вблизи деревни Ректа, а также молочно-товарной фермы у Бобовки.",
+    "image": "news/0222.jpg",
+    "source_url": "https://ndsmi.by/obshchestvo/52138-mobilnaya-gruppa-zhlobinskogo-rajispolkoma-proverila-okhranu-truda-v-strojotryadakh",
+    "category": "team",
+    "is_featured": false,
+    "position": 3
+  },
+  {
+    "title": "На стройобъектах Жлобинского района стартовал месячник охраны труда",
+    "summary": "«Новы дзень» сообщает о начале месячника охраны труда на строительных объектах Жлобинского района. Подробности — в материале «Безопасность — шаг за шагом».",
+    "body": "",
+    "image": "news/1101.jpg",
+    "source_url": "https://ndsmi.by/obshchestvo/52815-bezopasnost-shag-za-shagom-na-stroitelnykh-ob-ektakh-zhlobinskogo-rajona-startoval-mesyachnik-okhrany-truda",
+    "category": "team",
+    "is_featured": false,
+    "position": 4
+  },
+  {
+    "title": "В парке «Приднепровский» продолжается благоустройство",
+    "summary": "В Жлобине продолжают благоустраивать парк «Приднепровский». О работах в городской зоне отдыха рассказывает издание «Новы дзень».",
+    "body": "",
+    "image": "news/1122.jpg",
+    "source_url": "https://ndsmi.by/obshchestvo/52820-v-parke-pridneprovskij-prodolzhaetsya-blagoustrojstvo",
+    "category": "objects",
+    "is_featured": false,
+    "position": 5
+  }
+]

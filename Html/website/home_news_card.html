@@ -1,0 +1,11 @@
+<article class="pmk-newscard">
+    {% if item.image %}
+    <div class="pmk-newspic"><img src="{{ item.image.url }}" alt="{{ item.title }}" loading="lazy"></div>
+    {% endif %}
+    <div class="pmk-newstext">
+        <span class="pmk-meta">{{ item.get_category_display }}{% if item.published_at %} · {{ item.published_at|date:"d.m.Y" }}{% endif %}</span>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.summary }}</p>
+        <a href="{{ item.source_url }}" target="_blank" rel="noopener noreferrer">Читать новость <span aria-hidden="true">↗</span></a>
+    </div>
+</article>

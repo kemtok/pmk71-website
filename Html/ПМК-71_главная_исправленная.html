@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 
 <html lang="ru">
@@ -1224,8 +1225,8 @@
 				><nav class="nav" id="nav"
 					><a class="active" href="#home">Главная</a
 					><a href="#about">О компании</a
-					><a href="ПМК-71_каталог_обновлённый.html">Продукция</a
-					><a href="ПМК-71_страница_новостей.html">Новости</a
+					><a href="{% url 'website:catalog' %}">Продукция</a
+					><a href="{% url 'website:news' %}">Новости</a
 					><a href="#contacts">Контакты</a></nav
 				><div class="header-actions"
 					><a class="phone" href="#contacts"
@@ -1270,8 +1271,6 @@
 						></div
 					></div
 				><div class="hero-footer"
-					><div class="hero-caption" id="heroCaption"
-						>Строительство и развитие инфраструктуры</div
 					><div class="slider-buttons"
 						><button aria-label="Предыдущее фото" id="prevSlide">←</button
 						><button aria-label="Следующее фото" id="nextSlide">→</button></div
@@ -1295,7 +1294,7 @@
 						><img
 							alt="ПМК-71 — О компании"
 							loading="lazy"
-							src="../assets/design/base1950.png"
+							src="{% static 'design/base1950.png' %}"
 						/><div class="photo-label"
 							>Строительство · архитектура · развитие</div
 						></div
@@ -1335,7 +1334,7 @@
 							></article
 						><article class="project"
 							><div class="project-photo"
-								><img alt="Музей «Детям — жертвам войны» в Красном Береге" src="../assets/news/MuseiKB.jpg" loading="lazy" /></div
+								><img alt="Музей «Детям — жертвам войны» в Красном Береге" src="{% static 'news/MuseiKB.jpg' %}" loading="lazy" /></div
 							><div class="project-info"
 								><b>Общественные здания</b><p>Музей «Детям — жертвам войны», Красный Берег</p></div
 							></article
@@ -1378,36 +1377,9 @@
 							></div
 						></div
 					><div class="pmk-newsgrid"
-						><article class="pmk-newscard">
- <div class="pmk-newspic"><img src="../assets/news/0221.jpg" alt="В Жлобинском районе открыли два новых молочно-товарных комплекса" loading="lazy" /></div>
- <div class="pmk-newstext">
-  <span class="pmk-meta">Новости района · «Новы дзень»</span>
-  <h3>В Жлобинском районе открыли два новых молочно-товарных комплекса</h3>
-  <p>Об открытии двух новых молочно-товарных комплексов в Жлобинском районе сообщает издание «Новы дзень».</p>
-  <a href="https://ndsmi.by/vlast/53353-v-zhlobinskom-rajone-otkryli-dva-novykh-molochno-tovarnykh-kompleksa" target="_blank" rel="noopener noreferrer">Читать новость <span aria-hidden="true">↗</span></a>
- </div>
-</article>
-<article class="pmk-newscard">
- <div class="pmk-newspic"><img src="../assets/news/0223.jpg" alt="Коллектив Жлобинской ПМК-71 на праздничном мероприятии" loading="lazy" /></div>
- <div class="pmk-newstext">
-  <span class="pmk-meta">День строителя · «Новы дзень»</span>
-  <h3>Работников Жлобинской ПМК-71 поздравили с Днём строителя</h3>
-  <p>Коллектив Жлобинской ПМК-71 поздравили с профессиональным праздником — Днём строителя. О событии сообщает издание «Новы дзень».</p>
-  <a href="https://ndsmi.by/obshchestvo/51822-rabotnikov-zhlobinskoj-pmk-71-pozdravili-s-dnem-stroitelya" target="_blank" rel="noopener noreferrer">Читать новость <span aria-hidden="true">↗</span></a>
- </div>
-</article>
-<article class="pmk-newscard">
- <div class="pmk-newspic"><img src="../assets/news/0222.jpg" alt="Проверка охраны труда на строительном объекте" loading="lazy" /></div>
- <div class="pmk-newstext">
-  <span class="pmk-meta">Охрана труда · Жлобин ИНФО</span>
-  <h3>Мобильная группа проверила охрану труда в стройотрядах</h3>
-  <p>На строительных объектах у Ректы и Бобовки мобильная группа Жлобинского райисполкома проверила соблюдение требований охраны труда. Здесь вместе со специалистами Жлобинской ПМК-71 работают участники молодёжных стройотрядов.</p>
-  <a href="https://ndsmi.by/obshchestvo/52138-mobilnaya-gruppa-zhlobinskogo-rajispolkoma-proverila-okhranu-truda-v-strojotryadakh" target="_blank" rel="noopener noreferrer">Читать новость <span aria-hidden="true">↗</span></a>
-  <a href="https://t.me/zlobin_21" target="_blank" rel="noopener noreferrer">Источник: Жлобин ИНФО ↗</a>
- </div>
-</article>
-<article class="pmk-newscard"><div class="pmk-newspic"><img src="../assets/news/1101.jpg" alt="Охрана труда на строительном объекте Жлобинского района" loading="lazy" /></div><div class="pmk-newstext"><span class="pmk-meta">Охрана труда · «Новы дзень»</span><h3>На стройобъектах Жлобинского района стартовал месячник охраны труда</h3><p>«Новы дзень» сообщает о начале месячника охраны труда на строительных объектах Жлобинского района. Подробности — в материале «Безопасность — шаг за шагом».</p><a class="" href="https://ndsmi.by/obshchestvo/52815-bezopasnost-shag-za-shagom-na-stroitelnykh-ob-ektakh-zhlobinskogo-rajona-startoval-mesyachnik-okhrany-truda" target="_blank" rel="noopener noreferrer">Читать источник <span aria-hidden="true">↗</span></a></div></article>
-<article class="pmk-newscard"><div class="pmk-newspic"><img src="../assets/news/1122.jpg" alt="Благоустройство парка «Приднепровский»" loading="lazy" /></div><div class="pmk-newstext"><span class="pmk-meta">Благоустройство · «Новы дзень»</span><h3>В парке «Приднепровский» продолжается благоустройство</h3><p>В Жлобине продолжают благоустраивать парк «Приднепровский». О работах в городской зоне отдыха рассказывает издание «Новы дзень».</p><a class="" href="https://ndsmi.by/obshchestvo/52820-v-parke-pridneprovskij-prodolzhaetsya-blagoustrojstvo" target="_blank" rel="noopener noreferrer">Читать источник <span aria-hidden="true">↗</span></a></div></article></div
+						>{% for item in news_items %}
+{% include "website/home_news_card.html" %}
+{% empty %}<p>Новости скоро появятся.</p>{% endfor %}</div
 					></div
 				></section
 			><section class="section pmk-contacts" id="contacts"
@@ -1455,7 +1427,7 @@
 							target="_blank"
 							><img
 								alt="Расположение ПМК-71"
-								src="../assets/design/orig.jpg"
+								src="{% static 'design/orig.jpg' %}"
 								loading="lazy"
 							/><span class="pmk-mapglass"
 								><b>Жлобин · Первомайская, 144</b
@@ -1484,7 +1456,7 @@
 						><h4>Компания</h4><a href="#about">О компании</a
 						><a href="#news">Новости</a></div
 					><div
-						><h4>Информация</h4><a href="ПМК-71_каталог_обновлённый.html">Продукция</a
+						><h4>Информация</h4><a href="{% url 'website:catalog' %}">Продукция</a
 						><a href="#contacts">Обратная связь</a
 						><a href="#home">Наверх</a></div
 					><div
@@ -1549,15 +1521,15 @@
 			></div
 		><div class="toast" id="toast" role="status"></div>
 		<script id="photoData" type="application/json">[
-  "../assets/backgrounds/back1.png",
-  "../assets/backgrounds/back2.png",
-  "../assets/backgrounds/back3.png",
-  "../assets/backgrounds/back4.png",
-  "../assets/backgrounds/back5.png",
-  "../assets/backgrounds/back6.png",
-  "../assets/backgrounds/back7.png",
-  "../assets/backgrounds/back8.png",
-  "../assets/backgrounds/back9.png"
+  "{% static 'backgrounds/back1.png' %}",
+  "{% static 'backgrounds/back2.png' %}",
+  "{% static 'backgrounds/back3.png' %}",
+  "{% static 'backgrounds/back4.png' %}",
+  "{% static 'backgrounds/back5.png' %}",
+  "{% static 'backgrounds/back6.png' %}",
+  "{% static 'backgrounds/back7.png' %}",
+  "{% static 'backgrounds/back8.png' %}",
+  "{% static 'backgrounds/back9.png' %}"
 ]</script><script>(() => {
 				"use strict";
 				const nav = document.getElementById("nav"),
@@ -1627,9 +1599,7 @@ const loadedPhotos = photos.map(src => {
  img.src = src;
  return img.decode().then(() => true).catch(() => false);
 });
-function updateCaption() {
- document.getElementById("heroCaption").textContent = "Фотографии строительных объектов · " + String(current + 1).padStart(2, "0") + " / " + String(photos.length).padStart(2, "0");
-}
+
 async function setSlide(n) {
  if (switching) return;
  const next = (n + photos.length) % photos.length;
@@ -1643,13 +1613,13 @@ async function setSlide(n) {
   layers[activeLayer].classList.remove("is-active");
   activeLayer = incoming;
   current = next;
-  updateCaption();
+
   setTimeout(() => { switching = false; }, 1600);
  }));
 }
 firstLayer.style.backgroundImage = 'url("' + photos[0] + '")';
 firstLayer.classList.add("is-active");
-updateCaption();
+
 document.getElementById("prevSlide").addEventListener("click", () => setSlide(current - 1));
 document.getElementById("nextSlide").addEventListener("click", () => setSlide(current + 1));
 setInterval(() => { if (!document.hidden) setSlide(current + 1); }, 7000);})();</script></body

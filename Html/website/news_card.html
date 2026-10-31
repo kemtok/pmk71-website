@@ -1,0 +1,14 @@
+<article class="news-card{% if featured %} is-featured{% endif %}" data-category="{{ item.category }}" data-text="{{ item.title|lower }} {{ item.summary|lower }} {{ item.body|lower }}">
+    {% if item.image %}
+    <a class="news-photo" href="{{ item.source_url }}" target="_blank" rel="noopener noreferrer" aria-label="Читать: {{ item.title }}">
+        <img src="{{ item.image.url }}" alt="{{ item.title }}" loading="lazy">
+    </a>
+    {% endif %}
+    <div class="news-content">
+        <div class="news-meta"><span>{{ item.get_category_display }}</span>{% if item.published_at %}<span class="meta-dot"></span><time datetime="{{ item.published_at|date:'Y-m-d' }}">{{ item.published_at|date:"d.m.Y" }}</time>{% endif %}</div>
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.summary }}</p>
+        {% if item.body %}{{ item.body|linebreaks }}{% endif %}
+        <a class="news-link" href="{{ item.source_url }}" target="_blank" rel="noopener noreferrer">Читать источник <span aria-hidden="true">↗</span></a>
+    </div>
+</article>
