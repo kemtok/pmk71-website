@@ -142,3 +142,177 @@ class OrderTests(TestCase):
         order.refresh_from_db()
         self.assertEqual(order.status, "processing")
         self.assertEqual(order.sales_notes, "Связались с клиентом")
+
+
+
+class SalesTests(TestCase):
+    def test_staff_permissions(self):
+        from django.contrib.auth.models import Group
+        user = get_user_model().objects.create_user("saleslimited", password="test-pass", is_staff=True)
+        user.groups.add(Group.objects.get(name="Отдел продаж"))
+        self.client.force_login(user)
+        self.assertEqual(self.client.get(reverse("admin:website_orderrequest_changelist")).status_code, 200)
+        self.assertEqual(self.client.get(reverse("admin:website_product_changelist")).status_code, 403)
+        self.assertEqual(self.client.get(reverse("admin:auth_user_changelist")).status_code, 403)
+        self.assertFalse(user.has_perm("website.delete_orderrequest"))
+
+    @override_settings(EMAIL_BACKEND="django.core.mail.backends.locmem.EmailBackend",
+                       EMAIL_HOST="smtp.test", DEFAULT_FROM_EMAIL="site@example.com",
+                       SALES_NOTIFICATION_EMAILS=["sales@example.com"])
+    def test_notification_retry_and_deduplication(self):
+        from django.core import mail
+        from unittest.mock import patch
+        from website.notifications import notify_sales
+        from .models import OrderRequest
+        import uuid
+        order = OrderRequest.objects.create(customer_name="Клиент", phone="+375291234567",
+                                            product_name="Бетон", submission_id=uuid.uuid4())
+        with patch("website.notifications.send_mail", side_effect=RuntimeError("SMTP")):
+            self.assertFalse(notify_sales(order.pk))
+        self.assertTrue(OrderRequest.objects.filter(pk=order.pk).exists())
+        self.assertTrue(notify_sales(order.pk))
+        self.assertTrue(notify_sales(order.pk))
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertNotIn(order.phone, mail.outbox[0].body)
+        order.refresh_from_db()
+        self.assertIsNotNone(order.notification_sent_at)
+        self.assertEqual(order.notification_error, "")
+
+    @override_settings(EMAIL_BACKEND="django.core.mail.backends.locmem.EmailBackend",
+                       EMAIL_HOST="smtp.test", DEFAULT_FROM_EMAIL="site@example.com",
+                       SALES_NOTIFICATION_EMAILS=["sales@example.com"])
+    def test_submission_sends_only_after_commit(self):
+        from django.core import mail
+        import uuid
+        data = {"customer_name": "Клиент", "phone": "+375291234567", "submission_id": str(uuid.uuid4())}
+        with self.captureOnCommitCallbacks(execute=True):
+            self.assertEqual(self.client.post(reverse("website:submit_order"), data).status_code, 201)
+        self.assertEqual(len(mail.outbox), 1)
+        with self.captureOnCommitCallbacks(execute=True):
+            self.client.post(reverse("website:submit_order"), data)
+        self.assertEqual(len(mail.outbox), 1)
+
+
+
+class FeedbackTests(TestCase):
+    def test_both_forms_submit_with_csrf_and_show_errors(self):
+        import re
+        import uuid
+        from .models import OrderRequest
+        for name in ("home", "news"):
+            client = Client(enforce_csrf_checks=True)
+            response = client.get(reverse("website:" + name))
+            self.assertEqual(response.status_code, 200)
+            html = response.content.decode()
+            self.assertIn('name="customer_name"', html)
+            self.assertIn('name="phone"', html)
+            self.assertIn('js/contact-form.js', html)
+            csrf = re.search(r'name="csrfmiddlewaretoken" value="([^"]+)"', html)[1]
+            data = {"csrfmiddlewaretoken": csrf, "customer_name": "Клиент",
+                    "phone": "wrong", "comment": "Обратная связь", "submission_id": str(uuid.uuid4())}
+            self.assertEqual(client.post(reverse("website:submit_order"), data).status_code, 400)
+            data["phone"] = "+375291234567"
+            self.assertEqual(client.post(reverse("website:submit_order"), data).status_code, 201)
+            self.assertEqual(client.post(reverse("website:submit_order"), data).status_code, 200)
+        self.assertEqual(OrderRequest.objects.count(), 2)
+        self.assertTrue(all(x.product_name == "Общий запрос" for x in OrderRequest.objects.all()))
+
+
+
+class AntiSpamTests(TestCase):
+    def payload(self, phone="+375291234567"):
+        import uuid
+        return {"customer_name": "Клиент", "phone": phone, "submission_id": str(uuid.uuid4())}
+
+    def test_honeypot_does_not_save_or_notify(self):
+        from .models import OrderRequest
+        from unittest.mock import patch
+        data = self.payload()
+        data["website"] = "spam"
+        with patch("website.views.notify_sales") as notify:
+            response = self.client.post(reverse("website:submit_order"), data)
+        self.assertEqual(response.status_code, 400)
+        self.assertFalse(OrderRequest.objects.exists())
+        notify.assert_not_called()
+
+    def test_invalid_attempts_are_limited_and_forwarded_ip_is_ignored(self):
+        url = reverse("website:submit_order")
+        for i in range(10):
+            self.assertEqual(self.client.post(url, {}, HTTP_X_FORWARDED_FOR=f"192.0.2.{i}").status_code, 400)
+        response = self.client.post(url, {})
+        self.assertEqual(response.status_code, 429)
+        self.assertGreater(int(response["Retry-After"]), 0)
+
+    def test_phone_limit_across_different_addresses_and_retries(self):
+        from .models import OrderRequest
+        url = reverse("website:submit_order")
+        first = self.payload()
+        self.assertEqual(self.client.post(url, first).status_code, 201)
+        for i in range(4):
+            self.assertEqual(self.client.post(url, self.payload(), REMOTE_ADDR=f"192.0.2.{i}").status_code, 201)
+        self.assertEqual(self.client.post(url, first).status_code, 200)
+        data = self.payload("+375 (29) 123-45-67")
+        self.assertEqual(self.client.post(url, data, REMOTE_ADDR="192.0.2.100").status_code, 429)
+        self.assertEqual(OrderRequest.objects.count(), 5)
+
+    def test_limit_expires_and_does_not_store_raw_identity(self):
+        from datetime import timedelta
+        from unittest.mock import patch
+        from django.utils import timezone
+        from website.antispam import consume_limit
+        from .models import SubmissionLimit
+        now = timezone.now()
+        with patch("website.antispam.timezone.now", return_value=now):
+            self.assertEqual(consume_limit("test", "192.0.2.1", 1, 60), 0)
+            self.assertGreater(consume_limit("test", "192.0.2.1", 1, 60), 0)
+        self.assertNotIn("192.0.2.1", SubmissionLimit.objects.get().key)
+        with patch("website.antispam.timezone.now", return_value=now + timedelta(seconds=61)):
+            self.assertEqual(consume_limit("test", "192.0.2.1", 1, 60), 0)
+
+
+
+class BackupTests(TestCase):
+    def test_backup_restore_checksums_and_no_overwrite(self):
+        import sqlite3
+        import zipfile
+        from pathlib import Path
+        from website.backups import create_backup, restore_archive
+        with TemporaryDirectory(dir=".") as temp:
+            root = Path(temp).resolve()
+            db = root / "source.sqlite3"
+            with sqlite3.connect(db) as connection:
+                for table in ("website_news", "website_product"):
+                    connection.execute(f"CREATE TABLE {table} (image TEXT)")
+                for table in ("website_orderrequest", "auth_user"):
+                    connection.execute(f"CREATE TABLE {table} (id INTEGER)")
+                connection.execute("INSERT INTO website_news VALUES ('photo.jpg')")
+                connection.execute("INSERT INTO website_orderrequest VALUES (1)")
+            connection.close()
+            media = root / "media"
+            media.mkdir()
+            (media / "photo.jpg").write_bytes(b"photo")
+            databases = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": str(db)}}
+            from types import SimpleNamespace
+            from unittest.mock import patch
+            with patch("website.backups.settings", SimpleNamespace(DATABASES=databases, MEDIA_ROOT=media)):
+                archive, counts = create_backup(root / "backups")
+            self.assertEqual(counts["website_orderrequest"], 1)
+            destination = root / "restored"
+            self.assertEqual(restore_archive(archive, destination), counts)
+            self.assertEqual((destination / "media/photo.jpg").read_bytes(), b"photo")
+            with self.assertRaises(ValueError):
+                restore_archive(archive, destination)
+            broken = root / "broken.zip"
+            with zipfile.ZipFile(archive) as source, zipfile.ZipFile(broken, "w") as target:
+                for name in source.namelist():
+                    target.writestr(name, b"changed" if name == "media/photo.jpg" else source.read(name))
+            with self.assertRaises(ValueError):
+                restore_archive(broken, root / "broken-restore")
+            unsafe = root / "unsafe.zip"
+            with zipfile.ZipFile(unsafe, "w") as z:
+                z.writestr("manifest.json", "{}")
+                z.writestr("db.sqlite3", b"")
+                z.writestr("../escaped.txt", b"x")
+            with self.assertRaises(ValueError):
+                restore_archive(unsafe, root / "unsafe-restore")
+            self.assertFalse((root / "escaped.txt").exists())

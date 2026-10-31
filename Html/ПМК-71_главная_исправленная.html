@@ -1287,8 +1287,7 @@
 							>Мы уделяем особое внимание качеству строительных работ и
 							соблюдению сроков. На сайте представлена информация о предприятии,
 							строительных проектах и выпускаемой продукции.</p
-						><button class="btn btn-primary" data-open-modal=""
-							>Связаться с нами <span class="arrow">→</span></button
+						><a class="btn btn-primary" href="#contacts">Связаться с нами <span class="arrow">→</span></a
 						></div
 					><div class="media-tile"
 						><img
@@ -1486,38 +1485,20 @@
 				><div class="eyebrow">Обратная связь</div
 				><h2 id="modalTitle">Оставить заявку</h2
 				><p class="subtle"
-					>Демонстрационная форма. Отправка на сервер пока не подключена.</p
-				><form id="contactForm"
-					><div class="form-group"
-						><label for="clientName">Ваше имя</label
-						><input
-							id="clientName"
-							maxlength="80"
-							name="name"
-							placeholder="Укажите ваше имя"
-							required="" /></div
-					><div class="form-group"
-						><label for="clientContact">Телефон или email</label
-						><input
-							id="clientContact"
-							maxlength="120"
-							name="contact"
-							placeholder="Телефон или электронная почта"
-							required="" /></div
-					><div class="form-group"
-						><label for="clientMessage">Сообщение</label
-						><textarea
-							id="clientMessage"
-							name="message"
-							placeholder="Напишите, какая информация вас интересует"
-							rows="4"
-						></textarea></div
-					><p class="form-note"
-						>Данные не передаются предприятию и не сохраняются на сервере.</p
-					><button class="btn btn-primary" type="submit"
-						>Проверить заполнение <span class="arrow">→</span></button
-					></form
-				></div
+					>Оставьте контакты — отдел продаж свяжется с вами.</p
+				><form id="contactForm" action="{% url 'website:submit_order' %}" method="post">
+{% csrf_token %}
+<div style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden" aria-hidden="true"><label>Не заполняйте это поле<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+<input type="hidden" name="submission_id" id="contactSubmissionId">
+<div class="form-group"><label for="clientName">Ваше имя</label>
+<input id="clientName" name="customer_name" autocomplete="name" maxlength="100" required></div>
+<div class="form-group"><label for="clientContact">Номер телефона</label>
+<input id="clientContact" name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="+375 ..." required></div>
+<div class="form-group"><label for="clientMessage">Сообщение</label>
+<textarea id="clientMessage" name="comment" maxlength="3000" rows="4" placeholder="Напишите, какая информация вас интересует"></textarea></div>
+<p id="contactStatus" role="status" aria-live="polite"></p>
+<button class="btn btn-primary" type="submit">Отправить заявку <span class="arrow">→</span></button>
+</form></div
 			></div
 		><div class="toast" id="toast" role="status"></div>
 		<script id="photoData" type="application/json">[
@@ -1566,17 +1547,7 @@
 				document.addEventListener("keydown", (e) => {
 					if (e.key === "Escape" && modal?.classList.contains("open")) close();
 				});
-				document
-					.getElementById("contactForm")
-					?.addEventListener("submit", (e) => {
-						e.preventDefault();
-						close();
-						const toast = document.getElementById("toast");
-						toast.textContent =
-							"Это демонстрационная форма — заявка не отправлена.";
-						toast.classList.add("show");
-						setTimeout(() => toast.classList.remove("show"), 4200);
-					});
+				
 				const year = document.getElementById("year");
 				if (year) year.textContent = new Date().getFullYear();
 				const photos = JSON.parse(document.getElementById("photoData").textContent);
@@ -1622,6 +1593,6 @@ firstLayer.classList.add("is-active");
 
 document.getElementById("prevSlide").addEventListener("click", () => setSlide(current - 1));
 document.getElementById("nextSlide").addEventListener("click", () => setSlide(current + 1));
-setInterval(() => { if (!document.hidden) setSlide(current + 1); }, 7000);})();</script></body
+setInterval(() => { if (!document.hidden) setSlide(current + 1); }, 7000);})();</script><script src="{% static 'js/contact-form.js' %}" defer></script></body
 	></html
 >

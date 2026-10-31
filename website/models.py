@@ -76,6 +76,8 @@ class OrderRequest(models.Model):
     sales_notes = models.TextField("Заметки отдела продаж", blank=True)
     created_at = models.DateTimeField("Получена", auto_now_add=True)
     submission_id = models.UUIDField(unique=True, editable=False)
+    notification_sent_at = models.DateTimeField("Уведомление отправлено", null=True, blank=True, editable=False)
+    notification_error = models.CharField("Ошибка уведомления", max_length=250, blank=True, editable=False)
 
     class Meta:
         verbose_name = "Заявка"
@@ -84,3 +86,9 @@ class OrderRequest(models.Model):
 
     def __str__(self):
         return f"Заявка №{self.pk} — {self.customer_name}"
+
+
+class SubmissionLimit(models.Model):
+    key = models.CharField(max_length=100, unique=True)
+    count = models.PositiveIntegerField(default=0)
+    expires_at = models.DateTimeField(db_index=True)

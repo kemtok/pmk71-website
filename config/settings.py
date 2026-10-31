@@ -11,21 +11,33 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env_file = BASE_DIR / ".env"
+if env_file.exists():
+    for line in env_file.read_text(encoding="utf-8").splitlines():
+        if line.strip() and not line.lstrip().startswith("#") and "=" in line:
+            name, value = line.split("=", 1)
+            os.environ.setdefault(name.strip(), value.strip())
+
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "REDACTED-HISTORICAL-KEY"
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "")
+if not SECRET_KEY or SECRET_KEY == "replace-with-generated-key":
+    raise ImproperlyConfigured("Set DJANGO_SECRET_KEY in .env or environment.")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DJANGO_DEBUG", "False").lower() in ("true", "1", "yes")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [h.strip() for h in os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1").split(",") if h.strip()]
 
 
 # Application definition
@@ -126,3 +138,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Photos uploaded through the news administration.
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+# Email alerts are enabled only when a recipient and SMTP host are configured.
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = os.environ.get("EMAIL_HOST", "")
+EMAIL_PORT = int(os.environ.get("EMAIL_PORT", "587"))
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
+EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS", "True").lower() == "true"
+EMAIL_USE_SSL = os.environ.get("EMAIL_USE_SSL", "False").lower() == "true"
+EMAIL_TIMEOUT = 5
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", EMAIL_HOST_USER)
+SALES_NOTIFICATION_EMAILS = [x.strip() for x in os.environ.get("SALES_NOTIFICATION_EMAILS", "").split(",") if x.strip()]
+SITE_URL = os.environ.get("SITE_URL", "http://127.0.0.1:8000").rstrip("/")
